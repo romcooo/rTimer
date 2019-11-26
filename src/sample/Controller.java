@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +15,8 @@ public class Controller {
     @FXML
     private Button start;
 
+    private AnimationTimer t;
+
     @FXML
     public void onStart(ActionEvent e) throws InterruptedException {
         long nanoTime = System.nanoTime();
@@ -23,9 +26,6 @@ public class Controller {
         stopwatch.start();
         double x = 123;
         int y = 0;
-        while (stopwatch.getTime(TimeUnit.MILLISECONDS) < 200) {
-            System.out.println(stopwatch.getTime(TimeUnit.MILLISECONDS) + " milliseconds.");
-        }
 
     }
 
