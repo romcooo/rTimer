@@ -6,16 +6,80 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+
 <BorderPane fx:controller="sample.Controller"
             xmlns:fx="http://javafx.com/fxml" >
     <top>
-        <GridPane alignment="CENTER_LEFT">
-            <HBox>
-                <Button text="File"/>
-                <Button text="Edit"/>
-                <Button text="Settings"/>
-            </HBox>
-        </GridPane>
+<!--        <GridPane alignment="CENTER_LEFT">-->
+<!--            <MenuBar GridPane.columnIndex="0" GridPane.rowIndex="0">-->
+<!--                <Menu text="File">-->
+<!--                    <items>-->
+<!--                        <MenuItem text="New..." />-->
+<!--                        <SeparatorMenuItem/>-->
+<!--                        <MenuItem text="Exit" />-->
+<!--                    </items>-->
+<!--                </Menu>-->
+<!--            </MenuBar>-->
+<!--            <ToolBar GridPane.columnIndex="0" GridPane.rowIndex="1">-->
+<!--                <HBox>-->
+<!--                    <Button text="New..." >-->
+<!--                        <tooltip>-->
+<!--                            <Tooltip text="Add a new Todo item" />-->
+<!--                        </tooltip>-->
+<!--                    </Button>-->
+<!--                    <ToggleButton fx:id="filterToggleButton">-->
+<!--                        <tooltip>-->
+<!--                            <Tooltip text="Button down: show only items due today. Button down: show all items."/>-->
+<!--                        </tooltip>-->
+<!--                    </ToggleButton>-->
+<!--                </HBox>-->
+<!--            </ToolBar>-->
+<!--&lt;!&ndash;            <HBox GridPane.columnIndex="2">&ndash;&gt;-->
+<!--&lt;!&ndash;                <Button text="File"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <Button text="Edit"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <Button text="Settings"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </HBox>&ndash;&gt;-->
+<!--        </GridPane>-->
+
+        <VBox alignment="CENTER_LEFT">
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="New..." />
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Exit" />
+                    </items>
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <HBox>
+                    <Button text="New..." >
+                        <tooltip>
+                            <Tooltip text="Add a new Todo item" />
+                        </tooltip>
+                    </Button>
+                    <ToggleButton fx:id="filterToggleButton">
+                        <tooltip>
+                            <Tooltip text="Button down: show only items due today. Button down: show all items."/>
+                        </tooltip>
+                    </ToggleButton>
+                </HBox>
+            </ToolBar>
+            <!--            <HBox GridPane.columnIndex="2">-->
+            <!--                <Button text="File"/>-->
+            <!--                <Button text="Edit"/>-->
+            <!--                <Button text="Settings"/>-->
+            <!--            </HBox>-->
+        </VBox>
     </top>
 
     <left>
@@ -32,7 +96,7 @@
                 <Button text="+" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
             </VBox>
             <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" >
-                <Button fx:id="start" text="START" onAction="#onStart" />
+                <Button fx:id="start" text="START" onAction="#toggleTimer" />
             </VBox>
         </GridPane>
     </right>

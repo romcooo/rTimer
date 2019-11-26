@@ -1,6 +1,7 @@
 package sample;
 
-import javafx.animation.AnimationTimer;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,18 +16,67 @@ public class Controller {
     @FXML
     private Button start;
 
-    private AnimationTimer t;
+    StopWatch stopwatch1 = new StopWatch();
 
     @FXML
-    public void onStart(ActionEvent e) throws InterruptedException {
-        long nanoTime = System.nanoTime();
-        start.setText("STOP");
-//        timer1.setText(String.valueOf(nanoTime));
-        StopWatch stopwatch = new StopWatch();
-        stopwatch.start();
-        double x = 123;
-        int y = 0;
+    public void toggleTimer(ActionEvent e) throws InterruptedException {
+
+        if (stopwatch1.isStopped() || stopwatch1.isSuspended()) {
+            startResumeTimer();
+        } else if (stopwatch1.isStarted()) {
+            pauseTimer();
+        }
+    }
+
+    public void startResumeTimer() {
+        start.setText("PAUSE");
+
+        if (stopwatch1.isSuspended()) {
+            stopwatch1.resume();
+        } else if (stopwatch1.isStopped()) {
+            stopwatch1.start();
+        }
+        Runnable timeTracker = new Runnable() {
+            @Override
+            public void run() {
+                while(stopwatch1.isStarted()) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            timer1.setText(String.format("%02d:%02d:%02d.%03d",
+                                    stopwatch1.getTime(TimeUnit.HOURS),
+                                    stopwatch1.getTime(TimeUnit.MINUTES),
+                                    stopwatch1.getTime(TimeUnit.SECONDS),
+                                    stopwatch1.getTime(TimeUnit.MILLISECONDS)
+                            ));
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        };
+
+        new Thread(timeTracker).start();
 
     }
 
+    public void pauseTimer() {
+        start.setText("START");
+
+        if (stopwatch1.isStarted()) {
+            stopwatch1.suspend();
+        }
+
+    }
+
+
+
 }
+
+
