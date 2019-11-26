@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.apache.commons.lang3.time.StopWatch;
 
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
@@ -16,37 +15,38 @@ public class Controller {
     @FXML
     private Button start;
 
-    StopWatch stopwatch = new StopWatch();
+    StopWatch stopwatch1 = new StopWatch();
 
     @FXML
-    public void startStopTimer(ActionEvent e) throws InterruptedException {
-        if (start.getText().equals("START")) {
-            startTimer();
-        } else if (start.getText().equals("STOP")) {
-            stopTimer();
+    public void toggleTimer(ActionEvent e) throws InterruptedException {
+
+        if (stopwatch1.isStopped() || stopwatch1.isSuspended()) {
+            startResumeTimer();
+        } else if (stopwatch1.isStarted()) {
+            pauseTimer();
         }
     }
 
-    public void startTimer() {
-        start.setText("STOP");
+    public void startResumeTimer() {
+        start.setText("PAUSE");
 
-        if (stopwatch.isSuspended()) {
-            stopwatch.resume();
-        } else if (stopwatch.isStopped()) {
-            stopwatch.start();
+        if (stopwatch1.isSuspended()) {
+            stopwatch1.resume();
+        } else if (stopwatch1.isStopped()) {
+            stopwatch1.start();
         }
         Runnable timeTracker = new Runnable() {
             @Override
             public void run() {
-                while(stopwatch.isStarted()) {
+                while(stopwatch1.isStarted()) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
                             timer1.setText(String.format("%02d:%02d:%02d.%03d",
-                                    stopwatch.getTime(TimeUnit.HOURS),
-                                    stopwatch.getTime(TimeUnit.MINUTES),
-                                    stopwatch.getTime(TimeUnit.SECONDS),
-                                    stopwatch.getTime(TimeUnit.MILLISECONDS)
+                                    stopwatch1.getTime(TimeUnit.HOURS),
+                                    stopwatch1.getTime(TimeUnit.MINUTES),
+                                    stopwatch1.getTime(TimeUnit.SECONDS),
+                                    stopwatch1.getTime(TimeUnit.MILLISECONDS)
                             ));
                         }
                     });
@@ -65,11 +65,11 @@ public class Controller {
 
     }
 
-    public void stopTimer() {
+    public void pauseTimer() {
         start.setText("START");
 
-        if (stopwatch.isStarted()) {
-            stopwatch.suspend();
+        if (stopwatch1.isStarted()) {
+            stopwatch1.suspend();
         }
 
     }
