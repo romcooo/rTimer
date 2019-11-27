@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,10 +17,11 @@ public class Controller {
     @FXML
     private Button start;
 
-    StopWatch stopwatch1 = new StopWatch();
+    private StopWatch stopwatch1 = new StopWatch();
+//    private ExecutorService stopwatchExecutor;
 
     @FXML
-    public void toggleTimer(ActionEvent e) throws InterruptedException {
+    public void toggleTimer(ActionEvent e) {
 
         if (stopwatch1.isStopped() || stopwatch1.isSuspended()) {
             startResumeTimer();
@@ -42,12 +45,9 @@ public class Controller {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            timer1.setText(String.format("%02d:%02d:%02d.%03d",
-                                    stopwatch1.getTime(TimeUnit.HOURS),
-                                    stopwatch1.getTime(TimeUnit.MINUTES),
-                                    stopwatch1.getTime(TimeUnit.SECONDS),
-                                    stopwatch1.getTime(TimeUnit.MILLISECONDS)
-                            ));
+                            timer1.setText(MyFormatter.longMillisecondsTimeToTimeString(
+                                    stopwatch1.getTime(TimeUnit.MILLISECONDS))
+                            );
                         }
                     });
 
@@ -61,7 +61,29 @@ public class Controller {
             }
         };
 
-        new Thread(timeTracker).start();
+        Thread daemonStopwatch1 = new Thread(timeTracker);
+        // thread is set to daemon so that the application terminates correctly when user closes the main window.
+        // TODO look at ExecutorServices or Tasks whether this can be handled better
+        daemonStopwatch1.setDaemon(true);
+        daemonStopwatch1.start();
+
+//         stopwatchExecutor = Executors.newSingleThreadScheduledExecutor();
+//         stopwatchExecutor.execute(timeTracker);
+        Task task;
+        task = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                return null;
+            }
+        };
+
+        Service service;
+        service = new Service() {
+            @Override
+            protected Task createTask() {
+                return null;
+            }
+        };
 
     }
 
@@ -71,8 +93,11 @@ public class Controller {
         if (stopwatch1.isStarted()) {
             stopwatch1.suspend();
         }
-
     }
+//
+//    void killStopwatches() {
+//        this.stopwatchExecutor.shutdownNow();
+//    }
 
 
 
