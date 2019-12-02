@@ -96,7 +96,7 @@
                 <Button text="+" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
             </VBox>
             <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" >
-                <Button fx:id="start" text="START" onAction="#startStopTimer" />
+                <Button fx:id="start" text="START" onAction="#toggleTimer" />
             </VBox>
         </GridPane>
     </right>
