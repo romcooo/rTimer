@@ -6,10 +6,13 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
@@ -31,6 +34,7 @@ public class Controller {
         }
     }
 
+    @FXML
     public void startResumeTimer() {
         start.setText("PAUSE");
 
@@ -88,12 +92,27 @@ public class Controller {
 
     }
 
+    @FXML
     public void pauseTimer() {
         start.setText("START");
 
         if (stopwatch1.isStarted()) {
             stopwatch1.suspend();
         }
+    }
+
+    @FXML
+    public void addTimerTop() throws IOException {
+        TextField textFieldNewTop = new TextField("0:00:00.000");
+
+        Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
+        root.getChildrenUnmodifiable().add(textFieldNewTop);
+
+    }
+
+    @FXML
+    public void addTimerBottom() {
+
     }
 //
 //    void killStopwatches() {

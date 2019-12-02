@@ -16,6 +16,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 
+<?import javafx.scene.control.ListView?>
 <BorderPane fx:controller="sample.Controller"
             xmlns:fx="http://javafx.com/fxml" >
     <top>
@@ -83,6 +84,9 @@
     </top>
 
     <left>
+        <VBox>
+            <ToggleButton text="Sequence"/>
+        </VBox>
         <GridPane alignment="CENTER_LEFT" >
             <VBox>
                 <Button text="left"/>
@@ -102,10 +106,11 @@
     </right>
 
     <center>
-        <GridPane alignment="CENTER">
+        <VBox alignment="CENTER">
+            <Button fx:id="addTimerButtonTopDefault" text="+" onAction="#addTimerTop"/>
             <TextField fx:id="timer1" text="00:00:00.0"/>
-
-        </GridPane>
+            <Button fx:id="addTimerButtonBottomDefault" text="+" onAction="#addTimerBottom"/>
+        </VBox>
 
     </center>
 
