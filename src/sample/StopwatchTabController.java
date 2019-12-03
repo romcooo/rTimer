@@ -13,60 +13,76 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.apache.commons.lang3.time.StopWatch;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class StopwatchTabMainController  {
+public class StopwatchTabController {
+
+    private static int stopwatchId;
 
     @FXML
-    private TextField stopwatch1TextField;
+    private TextField defaultStopwatch1TextField;
     @FXML
-    private Button start;
+    private Button defaultStartButton;
     @FXML
     private VBox stopwatchCenterVBox1;
     @FXML
     private Button addStopwatchButtonTopDefault;
     @FXML
     private Button startAllStopwatchesButton;
+    @FXML
+    private HBox defaultStopwatchHBox;
 
-    private ArrayList<StopWatch> stopWatches = new ArrayList<>();
+    private Map<HBox, StopWatch> stopwatches = new HashMap<>();
 
-    private StopWatch stopwatch1 = new StopWatch();
+    private StopWatch defaultStopwatch1 = new StopWatch();
 //    private ExecutorService stopwatchExecutor;
 
+    @FXML
+    protected void initialize() {
+        stopwatches.put(defaultStopwatchHBox, defaultStopwatch1);
+    }
+
     public void startAllStopwatches() {
+        //TODO
         System.out.println("asd");
     }
 
 
     @FXML
     public void toggleStopwatch(ActionEvent e) {
+        Button pressedButton;
+        if (e.getSource() instanceof Button) {
+            pressedButton = (Button) e.getSource();
+        }
+        //TODO make it so that the stopwatch corresponding to the button from the same HBOX is toggled
 
-        if (stopwatch1.isStopped() || stopwatch1.isSuspended()) {
+        if (defaultStopwatch1.isStopped() || defaultStopwatch1.isSuspended()) {
             startResumeTimer();
-        } else if (stopwatch1.isStarted()) {
+        } else if (defaultStopwatch1.isStarted()) {
             pauseTimer();
         }
     }
 
     @FXML
     public void startResumeTimer() {
-        start.setText("PAUSE");
+        defaultStartButton.setText("PAUSE");
 
-        if (stopwatch1.isSuspended()) {
-            stopwatch1.resume();
-        } else if (stopwatch1.isStopped()) {
-            stopwatch1.start();
+        if (defaultStopwatch1.isSuspended()) {
+            defaultStopwatch1.resume();
+        } else if (defaultStopwatch1.isStopped()) {
+            defaultStopwatch1.start();
         }
         Runnable timeTracker = new Runnable() {
             @Override
             public void run() {
-                while(stopwatch1.isStarted()) {
+                while(defaultStopwatch1.isStarted()) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            stopwatch1TextField.setText(MyFormatter.longMillisecondsTimeToTimeString(
-                                    stopwatch1.getTime(TimeUnit.MILLISECONDS))
+                            defaultStopwatch1TextField.setText(MyFormatter.longMillisecondsTimeToTimeString(
+                                    defaultStopwatch1.getTime(TimeUnit.MILLISECONDS))
                             );
                         }
                     });
@@ -109,15 +125,15 @@ public class StopwatchTabMainController  {
 
     @FXML
     public void pauseTimer() {
-        start.setText("START");
+        defaultStartButton.setText("START");
 
-        if (stopwatch1.isStarted()) {
-            stopwatch1.suspend();
+        if (defaultStopwatch1.isStarted()) {
+            defaultStopwatch1.suspend();
         }
     }
 
     @FXML
-    public void addStopwatch(ActionEvent e) {
+    public boolean addStopwatch(ActionEvent e) {
         HBox newTimerHBox = new HBox();
         newTimerHBox.setAlignment(Pos.BASELINE_CENTER);
         Button pressedButton;
@@ -125,7 +141,12 @@ public class StopwatchTabMainController  {
         if (e.getSource() instanceof Button) {
             pressedButton = (Button) e.getSource();
         } else {
-            return;
+            return false;
+        }
+
+        // triple check
+        if (pressedButton == null) {
+            return false;
         }
 
         Button deleteButton = new Button("X");
@@ -133,15 +154,24 @@ public class StopwatchTabMainController  {
 //        deleteButton.setId("cancelButton" + centerVBox1.getChildren().size());
         deleteButton.setOnAction(this::deleteStopwatchHBox);
 
+        Button toggleButton = new Button("Start");
+        toggleButton.setOnAction(this::toggleStopwatch);
+
         int pressedButtonIndex = stopwatchCenterVBox1.getChildren().indexOf(pressedButton);
 
         //If top button, new field should be created below it - increase index by one
         if(pressedButton.equals(addStopwatchButtonTopDefault)) pressedButtonIndex++;
 
         TextField textFieldNew = new TextField("0:00:00.000");
+
+        stopwatches.put(newTimerHBox, new StopWatch());
+
         newTimerHBox.getChildren().add(deleteButton);
         newTimerHBox.getChildren().add(textFieldNew);
+        newTimerHBox.getChildren().add(toggleButton);
         stopwatchCenterVBox1.getChildren().add(pressedButtonIndex, newTimerHBox);
+
+        return true;
     }
 
     @FXML
@@ -153,7 +183,7 @@ public class StopwatchTabMainController  {
         } else {
             return;
         }
-
+        //remove the entire HBox
         stopwatchCenterVBox1.getChildren().remove(pressedButton.getParent());
 
     }

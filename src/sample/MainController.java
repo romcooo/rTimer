@@ -6,7 +6,8 @@ import javafx.fxml.FXML;
 public class MainController {
 
     @FXML
-    private StopwatchTabMainController stopwatchTabController;
+    private StopwatchTabController stopwatchTabController;
+
 
 
     //moving to separate controller

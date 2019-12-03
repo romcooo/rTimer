@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<BorderPane fx:controller="sample.StopwatchTabMainController" xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane fx:controller="sample.StopwatchTabController" xmlns:fx="http://javafx.com/fxml">
     <center>
         <VBox fx:id="stopwatchCenterVBox1" alignment="CENTER">
             <Button fx:id="addStopwatchButtonTopDefault" text="+" onAction="#addStopwatch"/>
-            <HBox alignment="BASELINE_CENTER">
+            <HBox fx:id="defaultStopwatchHBox" alignment="BASELINE_CENTER">
                 <Button text="X" onAction="#deleteStopwatchHBox"/>
-                <TextField fx:id="stopwatch1TextField" text="0:00:00.000"/>
-                <Button fx:id="start" text="START" onAction="#toggleStopwatch" />
+                <TextField fx:id="defaultStopwatch1TextField" text="0:00:00.000"/>
+                <Button fx:id="defaultStartButton" text="START" onAction="#toggleStopwatch" />
             </HBox>
             <Button fx:id="addStopwatchButtonBottomDefault" text="+" onAction="#addStopwatch"/>
         </VBox>
