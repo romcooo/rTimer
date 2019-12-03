@@ -1,8 +1,5 @@
 package sample;
 
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
-
 class MyFormatter {
     private static final int MILLIS_TO_HOURS = 3600000;
     private static final int MILLIS_TO_MINUTES = 60000;
