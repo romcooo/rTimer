@@ -20,7 +20,7 @@ class MyFormatter {
      *
      */
     static String longMillisecondsTimeToTimeString(long l) {
-        String timeString = String.format("%02d:%02d:%02d.%03d",
+        String timeString = String.format("%01d:%02d:%02d.%03d",
                 l / MILLIS_TO_HOURS,
                 l % MILLIS_TO_HOURS / MILLIS_TO_MINUTES,
                 l % MILLIS_TO_HOURS % MILLIS_TO_MINUTES / MILLIS_TO_SECONDS,
