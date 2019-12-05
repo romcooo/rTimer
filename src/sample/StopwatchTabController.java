@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,7 +55,6 @@ public class StopwatchTabController {
         System.out.println("asd");
     }
 
-
     @FXML
     public void toggleStopwatch(ActionEvent e) {
         Button pressedButton;
@@ -82,7 +80,7 @@ public class StopwatchTabController {
     }
 
     @FXML
-    public void startResume(HBox stopwatchHBox) {
+    private void startResume(HBox stopwatchHBox) {
         TextField textField = (TextField) stopwatchHBox.getChildren().get(1);
         Button startButton = (Button) stopwatchHBox.getChildren().get(2);
         StopWatch stopWatch = stopwatches.get(stopwatchHBox);
@@ -145,7 +143,7 @@ public class StopwatchTabController {
     }
 
     @FXML
-    public void pause(HBox stopwatchHBox) {
+    private void pause(HBox stopwatchHBox) {
         Button startButton = (Button) stopwatchHBox.getChildren().get(2);
         StopWatch stopWatch = stopwatches.get(stopwatchHBox);
 
@@ -155,6 +153,7 @@ public class StopwatchTabController {
         }
     }
 
+    @FXML
     private void stop(HBox stopwatchHBox) {
         StopWatch stopWatch = stopwatches.get(stopwatchHBox);
         if (!stopWatch.isSuspended() && !stopWatch.isStopped()) {
@@ -166,7 +165,7 @@ public class StopwatchTabController {
     public boolean addStopwatch(ActionEvent e) {
         HBox newTimerHBox = new HBox();
         newTimerHBox.setAlignment(Pos.BASELINE_CENTER);
-        newTimerHBox.setId(STOPWATCH_HBOX_ID_PREFIX + Integer.toString(hBoxId++));
+        newTimerHBox.setId(STOPWATCH_HBOX_ID_PREFIX + hBoxId++);
         Button pressedButton;
 
         if (e.getSource() instanceof Button) {
@@ -232,7 +231,7 @@ public class StopwatchTabController {
         }
     }
 
-    public Collection<StopWatch> getStopwatches() {
+    Collection<StopWatch> getStopwatches() {
         return this.stopwatches.values();
     }
 }

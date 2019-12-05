@@ -26,6 +26,11 @@ public class MainController {
     @FXML private Tab clockTab, timerTab, stopwatchTab;
 
     @FXML
+    private void initialize() {
+
+    }
+
+    @FXML
     private void open() {
 
     }
