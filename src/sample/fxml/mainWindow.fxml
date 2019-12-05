@@ -15,13 +15,15 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <BorderPane fx:controller="sample.MainController"
-            xmlns:fx="http://javafx.com/fxml" >
+            xmlns:fx="http://javafx.com/fxml" fx:id="mainBorderPane">
     <top>
         <VBox alignment="CENTER_LEFT">
             <MenuBar>
                 <Menu text="File">
                     <items>
-                        <MenuItem text="New..." />
+                        <MenuItem text="New" />
+                        <MenuItem text="Open" />
+                        <MenuItem text="Save As" onAction="#saveCurrentAs"/>
                         <SeparatorMenuItem/>
                         <MenuItem text="Exit" />
                     </items>
@@ -46,39 +48,18 @@
         </VBox>
     </top>
 
-<!--    <left>-->
-<!--        <VBox>-->
-<!--            <ToggleButton text="Sequence"/>-->
-<!--        </VBox>-->
-<!--        <GridPane alignment="CENTER_LEFT" >-->
-<!--            <VBox>-->
-<!--                <Button text="left"/>-->
-<!--            </VBox>-->
-<!--        </GridPane>-->
-<!--    </left>-->
-
-<!--    <right>-->
-<!--        <GridPane alignment="CENTER_RIGHT">-->
-<!--            <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" >-->
-<!--                <Button text="+" GridPane.rowIndex="0" GridPane.columnIndex="1"/>-->
-<!--            </VBox>-->
-<!--            <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" >-->
-<!--                <Button fx:id="start" text="START" onAction="#toggleTimer" />-->
-<!--            </VBox>-->
-<!--        </GridPane>-->
-<!--    </right>-->
-
     <center>
-        <TabPane tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab fx:id="clockTab" text="Clock">
-                    <fx:include source="clockTab.fxml"/>
+                <Tab text="Clock">
+                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>
                 </Tab>
-                <Tab fx:id="timerTab" text="Timer">
-                    <fx:include source="timerTab.fxml"/>
-                </Tab>
-                <Tab fx:id="stopwatchTab" text="Stopwatch">
-                    <fx:include source="stopwatchTab.fxml"/>
+                <fx:include fx:id="timerTab" source="timerTab.fxml"/>
+<!--                <Tab text="Timer">-->
+<!--                    <fx:include fx:id="timerTab" source="timerTab.fxml"/>-->
+<!--                </Tab>-->
+                <Tab fx:id="stopwatchTabReference"  text="Stopwatch">
+                    <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>
                 </Tab>
             </tabs>
         </TabPane>

@@ -8,11 +8,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +30,7 @@ public class StopwatchTabController {
 
     @FXML
     private TextField defaultStopwatch1TextField;
+
     @FXML
     private Button defaultStartButton;
     @FXML
@@ -147,9 +150,15 @@ public class StopwatchTabController {
         StopWatch stopWatch = stopwatches.get(stopwatchHBox);
 
         startButton.setText("Start");
-
-        if (stopWatch.isStarted()) {
+        if (!stopWatch.isSuspended() && !stopWatch.isStopped()) {
             stopWatch.suspend();
+        }
+    }
+
+    private void stop(HBox stopwatchHBox) {
+        StopWatch stopWatch = stopwatches.get(stopwatchHBox);
+        if (!stopWatch.isSuspended() && !stopWatch.isStopped()) {
+            stopWatch.stop();
         }
     }
 
@@ -204,11 +213,10 @@ public class StopwatchTabController {
         } else {
             return;
         }
-        pause((HBox) pressedButton.getParent());
+        stop((HBox) pressedButton.getParent());
         stopwatches.remove((HBox) pressedButton.getParent());
         //remove the entire HBox
         stopwatchCenterVBox1.getChildren().remove(pressedButton.getParent());
-
     }
 //
 //    void killStopwatches() {
@@ -224,4 +232,7 @@ public class StopwatchTabController {
         }
     }
 
+    public Collection<StopWatch> getStopwatches() {
+        return this.stopwatches.values();
+    }
 }
