@@ -3,17 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="sample.ClockTabController" xmlns:fx="http://javafx.com/fxml">
-    <center>
-        <VBox fx:id="clockCenterVBox1" alignment="CENTER">
-            <Button text="+"/>
-            <HBox alignment="BASELINE_CENTER">
-                <Button text="X"/>
-                <TextField fx:id="clock1" text="00:00:00.000"/>
-            </HBox>
-            <Button text="+"/>
-        </VBox>
-    </center>
-    <right>
-    </right>
-</BorderPane>
+<Tab fx:controller="sample.ClockTabController" xmlns:fx="http://javafx.com/fxml"
+     text="Clock">
+    <BorderPane>
+        <center>
+            <VBox fx:id="clockCenterVBox1" alignment="CENTER">
+                <Button text="+"/>
+                <HBox alignment="BASELINE_CENTER">
+                    <Button text="X"/>
+                    <TextField fx:id="clock1" text="00:00:00.000"/>
+                </HBox>
+                <Button text="+"/>
+            </VBox>
+        </center>
+        <right>
+        </right>
+    </BorderPane>
+</Tab>

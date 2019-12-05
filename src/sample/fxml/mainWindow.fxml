@@ -13,7 +13,7 @@
 <?import javafx.scene.control.ToolBar?>
 
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.Tab?>
+
 <BorderPane fx:controller="sample.MainController"
             xmlns:fx="http://javafx.com/fxml" fx:id="mainBorderPane">
     <top>
@@ -51,19 +51,20 @@
     <center>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Clock">
-                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>
-                </Tab>
-                <fx:include fx:id="timerTab" source="timerTab.fxml"/>
+<!--                <Tab text="Clock">-->
+<!--                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="clockTab" source="clockTab.fxml"/>
 <!--                <Tab text="Timer">-->
 <!--                    <fx:include fx:id="timerTab" source="timerTab.fxml"/>-->
 <!--                </Tab>-->
-                <Tab fx:id="stopwatchTabReference"  text="Stopwatch">
-                    <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>
-                </Tab>
+                <fx:include fx:id="timerTab" source="timerTab.fxml"/>
+<!--                <Tab fx:id="stopwatchTabReference"  text="Stopwatch">-->
+<!--                    <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>
             </tabs>
         </TabPane>
-
     </center>
 
 </BorderPane>

@@ -20,14 +20,10 @@ public class MainController {
     @FXML
     private TabPane tabPane;
 
-    @FXML private Tab stopwatchTabReference;
-
     @FXML
     private StopwatchTabController stopwatchTabController;
 
-    @FXML public void initialize() {
-
-    }
+    @FXML private Tab clockTab, timerTab, stopwatchTab;
 
     @FXML
     private void open() {
@@ -35,11 +31,10 @@ public class MainController {
     }
 
     @FXML
-    private void saveCurrentAs() throws IOException {
-        System.out.println(stopwatchTabController.toString());
-        System.out.println(stopwatchTabController.getStopwatches().toString());
+    private void saveCurrentAs() {
+        // do not allow saving if a "clock" is running
         for (StopWatch stopwatch:stopwatchTabController.getStopwatches()) {
-            if (stopwatch.isStarted()) {
+            if (stopwatch.isStarted() && !stopwatch.isSuspended()) {
                 System.out.println("Please stop stopwatches before saving.");
                 return;
             }
@@ -48,15 +43,15 @@ public class MainController {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
 
-//        if (clockTab.isSelected()){
-//
-//        }
-//
-//        if (timerTab.isSelected()) {
-//
-//        }
+        if (clockTab.isSelected()){
 
-        if (stopwatchTabReference.isSelected()) {
+        }
+
+        if (timerTab.isSelected()) {
+
+        }
+
+        if (stopwatchTab.isSelected()) {
 
         }
 
