@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+
 <Tab fx:controller="sample.StopwatchTabController" xmlns:fx="http://javafx.com/fxml" text="Stopwatch">
     <BorderPane >
         <center>

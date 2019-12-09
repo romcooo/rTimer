@@ -13,7 +13,7 @@
 <?import javafx.scene.control.ToolBar?>
 
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.Tab?>
+
 <BorderPane fx:controller="sample.MainController"
             xmlns:fx="http://javafx.com/fxml" fx:id="mainBorderPane">
     <top>
