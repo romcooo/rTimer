@@ -217,10 +217,6 @@ public class StopwatchTabController {
         //remove the entire HBox
         stopwatchCenterVBox1.getChildren().remove(pressedButton.getParent());
     }
-//
-//    void killStopwatches() {
-//        this.stopwatchExecutor.shutdownNow();
-//    }
 
     abstract static class DeleteButtonBuilder {
         static Button getDeleteButton(EventHandler<ActionEvent> e) {

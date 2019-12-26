@@ -51,10 +51,6 @@
     <center>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-<!--                <Tab text="Clock">-->
-<!--                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>-->
-<!--                </Tab>-->
-                <fx:include fx:id="clockTab" source="clockTab.fxml"/>
 <!--                <Tab text="Timer">-->
 <!--                    <fx:include fx:id="timerTab" source="timerTab.fxml"/>-->
 <!--                </Tab>-->
@@ -63,6 +59,10 @@
 <!--                    <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>-->
 <!--                </Tab>-->
                 <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>
+<!--                <Tab text="Clock">-->
+<!--                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="clockTab" source="clockTab.fxml"/>
             </tabs>
         </TabPane>
     </center>

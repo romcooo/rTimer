@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.InputMismatchException;
+
 class MyFormatter {
     private static final int MILLIS_TO_HOURS = 3600000;
     private static final int MILLIS_TO_MINUTES = 60000;
@@ -25,5 +27,19 @@ class MyFormatter {
                 l % MILLIS_TO_HOURS / MILLIS_TO_MINUTES,
                 l % MILLIS_TO_HOURS % MILLIS_TO_MINUTES / MILLIS_TO_SECONDS,
                 l % MILLIS_TO_HOURS % MILLIS_TO_MINUTES % MILLIS_TO_SECONDS);
+    }
+    
+    static long timeStringToLongMillisecondsTime(String s) throws InputMismatchException {
+        String[] values = s.split(":");
+        if (values.length < 3) {
+            throw new InputMismatchException();
+        }
+        
+        int hours = Integer.parseInt(values[0]);
+        int minutes = Integer.parseInt(values[1]);
+        double secondsAndMillis = Double.parseDouble(values[2]);
+        return hours * MILLIS_TO_HOURS
+                + minutes * MILLIS_TO_MINUTES
+                + (int) (secondsAndMillis * MILLIS_TO_SECONDS);
     }
 }

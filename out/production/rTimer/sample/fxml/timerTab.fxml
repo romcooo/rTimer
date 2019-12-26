@@ -7,19 +7,31 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Tab?>
 
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ToggleButton?>
 <Tab fx:controller="sample.TimerTabController" xmlns:fx="http://javafx.com/fxml" text="Timer">
     <BorderPane>
-            <center>
-                <VBox fx:id="timerCenterVBox1" alignment="CENTER">
-                    <Button text="+"/>
-                    <HBox alignment="BASELINE_CENTER">
-                        <Button text="X"/>
-                        <TextField fx:id="timer1" text="0:00:00.000"/>
-                    </HBox>
-                    <Button text="+"/>
-                </VBox>
-            </center>
-            <right>
-            </right>
+        <left>
+            <VBox>
+                <CheckBox fx:id="repeatCheckBox" text="Repeat"/>
+                <HBox>
+                    <CheckBox fx:id="breakCheckBox" text="Break between timers"/>
+                    <TextField/>
+                </HBox>
+                <ToggleButton fx:id="toggleTimerFormat" text="Use dropdowns for timers instead of free text"/>
+            </VBox>
+        </left>
+        <center>
+            <VBox fx:id="timerCenterVBox1" alignment="CENTER">
+                <Button text="+"/>
+                <HBox alignment="BASELINE_CENTER">
+                    <Button text="X"/>
+                    <TextField fx:id="timer1" text="0:00:00.000"/>
+                </HBox>
+                <Button text="+"/>
+            </VBox>
+        </center>
+        <right>
+        </right>
     </BorderPane>
 </Tab>
