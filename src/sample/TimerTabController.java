@@ -1,5 +1,9 @@
 package sample;
 
-public class TimerTabController {
+import javafx.scene.layout.HBox;
 
+import java.util.Map;
+
+public class TimerTabController {
+    private Map<HBox, MyTimer> timers;
 }

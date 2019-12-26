@@ -20,12 +20,17 @@ public class MyTimer implements Startable {
     }
     
     public long getRemainingTime() {
+        System.out.println("state: " + this.state.toString()
+                                   + "\ntotal time: " + totalTime
+                                   + "\nstored elapsed time: " + storedElapsedTime
+                                   + "\nstarted nano time: " + startNanoTime
+                                   + "\ncurrent nano time: " + System.nanoTime());
         if (this.state == TimerStates.STOPPED) {
             return this.totalTime;
         } else if (this.state == TimerStates.PAUSED) {
             return totalTime - storedElapsedTime;
         } else if (this.state == TimerStates.STARTED) {
-            return totalTime - storedElapsedTime - (System.nanoTime() - startNanoTime);
+            return totalTime - storedElapsedTime - ((System.nanoTime() - startNanoTime)/1000000);
         }
         return -1;
     }
@@ -64,7 +69,7 @@ public class MyTimer implements Startable {
         }
         
         this.state = TimerStates.PAUSED;
-        this.storedElapsedTime += this.startNanoTime - System.nanoTime();
+        this.storedElapsedTime += ((System.nanoTime() - startNanoTime) / 1000000);
         
         return true;
     }
