@@ -2,31 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="bleh">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/ClockTabController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/ClockTabController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MyConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MyFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/MyFormatter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$DeleteButtonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$DeleteButtonBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerStates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/TimerStates.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerTabController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/TimerTabController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/clockTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/clockTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/stopwatchTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/stopwatchTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/timerTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/timerTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ClockTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClockTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MyTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MyTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/StopwatchTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StopwatchTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/TimerStates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/TimerStates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/TimerTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/TimerTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/fxml/clockTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/fxml/clockTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/fxml/stopwatchTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/fxml/stopwatchTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/fxml/timerTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/fxml/timerTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rTimer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MorTimer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +91,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java-masterclass-0/IJ-projects/chapter15/Deadlock" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -159,7 +139,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="rTimer" />
+      <module name="MorTimer" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -175,7 +155,7 @@
     </configuration>
     <configuration name="MyTimer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sample.MyTimer" />
-      <module name="rTimer" />
+      <module name="MorTimer" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>

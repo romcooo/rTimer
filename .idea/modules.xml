@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/rTimer.iml" filepath="$PROJECT_DIR$/rTimer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MorTimer.iml" filepath="$PROJECT_DIR$/MorTimer.iml" />
     </modules>
   </component>
 </project>

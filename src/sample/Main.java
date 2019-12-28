@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("fxml/mainWindow.fxml"));
-        primaryStage.setTitle("rTimer");
+        primaryStage.setTitle("Mortimer");
         primaryStage.setScene(new Scene(root, 800, 700));
         primaryStage.show();
     }

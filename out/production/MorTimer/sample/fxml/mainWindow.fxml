@@ -1,0 +1,70 @@
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+
+<?import javafx.scene.control.TabPane?>
+
+<BorderPane fx:controller="sample.MainController"
+            xmlns:fx="http://javafx.com/fxml" fx:id="mainBorderPane">
+    <top>
+        <VBox alignment="CENTER_LEFT">
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="New" />
+                        <MenuItem text="Open" />
+                        <MenuItem text="Save As" onAction="#saveCurrentAs"/>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Exit" />
+                    </items>
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <HBox>
+                    <Button text="New..." >
+                        <tooltip>
+                            <Tooltip text="Add a new Todo item" />
+                        </tooltip>
+                    </Button>
+                    <ToggleButton fx:id="filterToggleButton">
+                        <tooltip>
+                            <Tooltip text="Button down: show only items due today. Button down: show all items."/>
+                        </tooltip>
+                    </ToggleButton>
+                </HBox>
+            </ToolBar>
+
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+<!--                <Tab text="Timer">-->
+<!--                    <fx:include fx:id="timerTab" source="timerTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="timerTab" source="timerTab.fxml"/>
+<!--                <Tab fx:id="stopwatchTabReference"  text="Stopwatch">-->
+<!--                    <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>
+<!--                <Tab text="Clock">-->
+<!--                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="clockTab" source="clockTab.fxml"/>
+            </tabs>
+        </TabPane>
+    </center>
+
+</BorderPane>
