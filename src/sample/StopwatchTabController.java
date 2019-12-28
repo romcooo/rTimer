@@ -1,13 +1,17 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,10 +27,13 @@ public class StopwatchTabController {
     private static final String STOPWATCH_HBOX_ID_PREFIX = "stopwatchHBox";
     private static final String STOP_BUTTON_TEXT = "Stop";
     private static final String START_BUTTON_TEXT = "Start";
-
+    
     //start at 1 because 0 is taken by the default hbox
     private static int hBoxId = 1;
 
+    @FXML
+    Tab stopwatchTab;
+    
     @FXML
     private TextField defaultStopwatch1TextField;
 
@@ -44,10 +51,52 @@ public class StopwatchTabController {
     private Map<HBox, StopWatch> stopwatches = new HashMap<>();
 
 //    private ExecutorService stopwatchExecutor;
-
+    
+    @FXML
+    void handleSelectionChanged() {
+        if (stopwatchTab.isSelected()) {
+            startTimeFieldUpdates();
+        }
+    }
+    
     @FXML
     protected void initialize() {
         stopwatches.put(defaultStopwatchHBox, new StopWatch());
+    }
+    
+    public void startTimeFieldUpdates() {
+        Runnable timeTracker = new Runnable() {
+            @Override
+            public void run() {
+                while(stopwatchTab.isSelected()) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (HBox hBox : stopwatches.keySet()) {
+                                if (hBox.getChildren().get(1) instanceof TextField) {
+                                    TextField currentField = (TextField) hBox.getChildren().get(1);
+                                    currentField.setText(MyFormatter.longMillisecondsTimeToTimeString(
+                                            stopwatches.get(hBox).getTime(TimeUnit.MILLISECONDS))
+                                                        );
+                                }
+                            }
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        };
+        Thread daemonStopwatch = new Thread(timeTracker);
+        // thread is set to daemon so that the application terminates correctly when user closes the main window.
+        // TODO look at ExecutorServices or Tasks whether this can be handled better
+        daemonStopwatch.setDaemon(true);
+        daemonStopwatch.start();
     }
 
     public void startAllStopwatches() {
@@ -93,52 +142,37 @@ public class StopwatchTabController {
             stopWatch.start();
         }
 
-        Runnable timeTracker = new Runnable() {
-            @Override
-            public void run() {
-                while(stopWatch.isStarted()) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            textField.setText(MyFormatter.longMillisecondsTimeToTimeString(
-                                    stopWatch.getTime(TimeUnit.MILLISECONDS))
-                            );
-                        }
-                    });
-
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-
-                }
-            }
-        };
-
-        Thread daemonStopwatch = new Thread(timeTracker);
-        // thread is set to daemon so that the application terminates correctly when user closes the main window.
-        // TODO look at ExecutorServices or Tasks whether this can be handled better
-        daemonStopwatch.setDaemon(true);
-        daemonStopwatch.start();
+//        Runnable timeTracker = new Runnable() {
+//            @Override
+//            public void run() {
+//                while(stopWatch.isStarted()) {
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            textField.setText(MyFormatter.longMillisecondsTimeToTimeString(
+//                                    stopWatch.getTime(TimeUnit.MILLISECONDS))
+//                            );
+//                        }
+//                    });
+//
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException ex) {
+//                        ex.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//        };
+//
+//        Thread daemonStopwatch = new Thread(timeTracker);
+//        // thread is set to daemon so that the application terminates correctly when user closes the main window.
+//        // TODO look at ExecutorServices or Tasks whether this can be handled better
+//        daemonStopwatch.setDaemon(true);
+//        daemonStopwatch.start();
 
 //         stopwatchExecutor = Executors.newSingleThreadScheduledExecutor();
 //         stopwatchExecutor.execute(timeTracker);
-        Task task;
-        task = new Task() {
-            @Override
-            protected Object call() throws Exception {
-                return null;
-            }
-        };
-
-        Service service;
-        service = new Service() {
-            @Override
-            protected Task createTask() {
-                return null;
-            }
-        };
 
     }
 
@@ -201,6 +235,10 @@ public class StopwatchTabController {
         stopwatchCenterVBox1.getChildren().add(pressedButtonIndex, newTimerHBox);
 
         return true;
+    }
+    
+    private void updateTimeFields() {
+    
     }
 
     @FXML

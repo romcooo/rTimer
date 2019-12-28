@@ -1,7 +1,7 @@
 package sample;
 
 enum TimerStates {
-    STARTED {
+    RUNNING {
         public boolean isStarted() { return true; }
         public boolean isRunning() { return true; }
     },

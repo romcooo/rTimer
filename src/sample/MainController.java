@@ -1,6 +1,8 @@
 package sample;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -35,14 +37,24 @@ public class MainController {
 
     @FXML
     private void initialize() {
-
+        tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+            @Override
+            public void changed(ObservableValue<? extends Tab> observableValue, Tab tab, Tab t1) {
+            
+            }
+        });
     }
 
     @FXML
     private void open() {
 
     }
-
+    
+    @FXML
+    private void setTabSelection() {
+        System.out.println(tabPane.getSelectionModel().getSelectedItem().getId());
+    }
+    
     @FXML
     private void saveCurrentAs() throws IOException {
         // do not allow saving if a "clock" is running

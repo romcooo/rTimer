@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<Tab fx:controller="sample.StopwatchTabController" xmlns:fx="http://javafx.com/fxml" text="Stopwatch">
-    <BorderPane >
+<Tab fx:id="stopwatchTab" fx:controller="sample.StopwatchTabController" xmlns:fx="http://javafx.com/fxml" text="Stopwatch" onSelectionChanged="#handleSelectionChanged">
+    <BorderPane>
         <center>
             <VBox fx:id="stopwatchCenterVBox1" alignment="CENTER">
                 <Button fx:id="addStopwatchButtonTopDefault" text="+" onAction="#addStopwatch"/>
