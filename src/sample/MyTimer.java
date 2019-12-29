@@ -5,8 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class MyTimer implements Startable {
-    public static final long DEFAULT_TIMER_MILLIS_VALUE = 60000;
-    public static final String DEFAULT_TIMER_STRING_VALUE = MyFormatter.longMillisecondsTimeToTimeString(DEFAULT_TIMER_MILLIS_VALUE);
+    private static final long DEFAULT_TIMER_MILLIS_VALUE = 60000;
+    private static final String DEFAULT_TIMER_STRING_VALUE = MyFormatter.longMillisecondsTimeToTimeString(DEFAULT_TIMER_MILLIS_VALUE);
     
     private long startNanoTime, storedElapsedTime, totalTime;
     private TimerStates state;
@@ -24,15 +24,20 @@ public class MyTimer implements Startable {
         this.totalTime = DEFAULT_TIMER_MILLIS_VALUE;
     }
     
+    public static String getDefaultTimerStringValue() {
+        return DEFAULT_TIMER_STRING_VALUE;
+    }
+    
     public long getTotalTime() {
         return totalTime;
     }
     
-    public void setTotalTime(long totalTime) {
+    public void setNewTotalTime(long totalTime) {
         this.totalTime = totalTime;
+        this.storedElapsedTime = 0;
     }
     
-    public TimerStates getState() {
+    TimerStates getState() {
         return state;
     }
     
@@ -44,7 +49,7 @@ public class MyTimer implements Startable {
         return timerStringProperty;
     }
     
-    public long getRemainingTime() {
+    long getRemainingTime() {
 //        System.out.println("state: " + this.state.toString()
 //                                   + "\ntotal time: " + totalTime
 //                                   + "\nstored elapsed time: " + storedElapsedTime
@@ -103,7 +108,7 @@ public class MyTimer implements Startable {
             System.out.println("Already stopped.");
             return false;
         }
-        System.out.println("Stopping.");
+//        System.out.println("Stopping.");
         this.state = TimerStates.STOPPED;
         this.storedElapsedTime = 0;
         this.startNanoTime = 0;

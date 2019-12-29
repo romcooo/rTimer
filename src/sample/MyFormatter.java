@@ -30,16 +30,19 @@ class MyFormatter {
     }
     
     static long timeStringToLongMillisecondsTime(String s) throws InputMismatchException {
-        String[] values = s.split(":");
-        if (values.length < 3) {
-            throw new InputMismatchException();
+        String[] values = s.split(":|\\.");
+        if (values.length < 4) {
+            throw new InputMismatchException("Input string cannot be parsed;");
         }
         
         int hours = Integer.parseInt(values[0]);
         int minutes = Integer.parseInt(values[1]);
-        double secondsAndMillis = Double.parseDouble(values[2]);
+        int seconds = Integer.parseInt(values[2]);
+        int millis = Integer.parseInt(values[3]);
+        
         return hours * MILLIS_TO_HOURS
                 + minutes * MILLIS_TO_MINUTES
-                + (int) (secondsAndMillis * MILLIS_TO_SECONDS);
+                + seconds * MILLIS_TO_SECONDS
+                + millis;
     }
 }
