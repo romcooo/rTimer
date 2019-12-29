@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,11 +23,24 @@ public class ClockTabController {
     
     private StringProperty timeStringProperty = new SimpleStringProperty();
     
+    //test
+    @FXML
+    TextField test;
+    StringProperty prop = new SimpleStringProperty("0");
     
     @FXML
     private void initialize() {
         bindToTime();
         clock1.textProperty().bind(timeStringProperty);
+    
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                prop.set(MyFormatter.longMillisecondsTimeToTimeString(l/1000000));
+            }
+        };
+        timer.start();
+        test.textProperty().bind(prop);
     }
     
     private void bindToTime() {

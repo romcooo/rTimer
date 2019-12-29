@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -26,18 +27,37 @@ public class TimerTabController {
     
     private Map<HBox, MyTimer> timers = new HashMap<>();
     
+    private AnimationTimer timerTabAnimationTimer = new AnimationTimer() {
+        @Override
+        public void handle(long l) {
+            for (HBox hBox : timers.keySet()) {
+                if (hBox.getChildren().get(TIMER_HBOX_TEXTFIELD_INDEX) instanceof TextField) {
+                    TextField currentField = (TextField) hBox.getChildren().get(TIMER_HBOX_TEXTFIELD_INDEX);
+                    currentField.setText(MyFormatter.longMillisecondsTimeToTimeString(
+                            timers.get(hBox).getRemainingTime())
+                                        );
+                }
+            }
+        }
+    };
+    
     @FXML
     protected void initialize() {
-        MyTimer defaultTimer = new MyTimer();
-        timers.put(defaultTimerHBox, defaultTimer);
-//        defaultTimerTextField.textProperty().bind(defaultTimer.timerStringPropertyProperty());
+        timers.put(defaultTimerHBox, new MyTimer());
     }
     
     @FXML
     void handleSelectionChanged() {
         if (timerTab.isSelected()) {
-            startTimeFieldUpdates();
+            timerTabAnimationTimer.start();
+        } else {
+            timerTabAnimationTimer.stop();
         }
+        
+//        if (timerTab.isSelected()) {
+//            startTimeFieldUpdates();
+//        }
+    
     }
     
     @FXML
@@ -103,38 +123,40 @@ public class TimerTabController {
         return true;
     }
     
-    public void startTimeFieldUpdates() {
-        Runnable timeTracker = new Runnable() {
-            @Override
-            public void run() {
-                while(timerTab.isSelected()) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            for (HBox hBox : timers.keySet()) {
-                                if (hBox.getChildren().get(1) instanceof TextField) {
-                                    TextField currentField = (TextField) hBox.getChildren().get(1);
-                                    currentField.setText(MyFormatter.longMillisecondsTimeToTimeString(
-                                            timers.get(hBox).getRemainingTime())
-                                                        );
-                                }
-                            }
-                        }
-                    });
+//    public void startTimeFieldUpdates() {
+//
+//        Runnable timeTracker = new Runnable() {
+//            @Override
+//            public void run() {
+//                while(timerTab.isSelected()) {
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            for (HBox hBox : timers.keySet()) {
+//                                if (hBox.getChildren().get(1) instanceof TextField) {
+//                                    TextField currentField = (TextField) hBox.getChildren().get(1);
+//                                    currentField.setText(MyFormatter.longMillisecondsTimeToTimeString(
+//                                            timers.get(hBox).getRemainingTime())
+//                                                        );
+//                                }
+//                            }
+//                        }
+//                    });
+//
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException ex) {
+//                        ex.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//        };
+//        Thread daemonStopwatch = new Thread(timeTracker);
+//        // thread is set to daemon so that the application terminates correctly when user closes the main window.
+//        // TODO look at ExecutorServices or Tasks whether this can be handled better
+//        daemonStopwatch.setDaemon(true);
+//        daemonStopwatch.start();
+//    }
 
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-
-                }
-            }
-        };
-        Thread daemonStopwatch = new Thread(timeTracker);
-        // thread is set to daemon so that the application terminates correctly when user closes the main window.
-        // TODO look at ExecutorServices or Tasks whether this can be handled better
-        daemonStopwatch.setDaemon(true);
-        daemonStopwatch.start();
-    }
 }

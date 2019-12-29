@@ -93,24 +93,6 @@ public class MyTimer implements Startable {
 //        daemonTimer.setDaemon(true);
 //        daemonTimer.start();
 //
-
-//        Runnable startTimerRunnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                while(state.isRunning()) {
-//                    timerStringProperty.set(MyFormatter.longMillisecondsTimeToTimeString(getRemainingTime()));
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        };
-//
-//        Thread daemonTimer = new Thread(startTimerRunnable);
-//        daemonTimer.setDaemon(true);
-//        daemonTimer.start();
         
         return true;
     }
