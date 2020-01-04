@@ -1,31 +1,40 @@
 package sample;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 public class MyTimer implements Startable {
     private static final long DEFAULT_TIMER_MILLIS_VALUE = 60000;
-    private static final String DEFAULT_TIMER_STRING_VALUE = MyFormatter.longMillisecondsTimeToTimeString(DEFAULT_TIMER_MILLIS_VALUE);
-    
+
     private long startNanoTime, storedElapsedTime, totalTime;
     private TimerStates state;
-    private StringProperty timerStringProperty = new SimpleStringProperty(DEFAULT_TIMER_STRING_VALUE);
-    
-    public MyTimer(String timerStringProperty) {
-        this.state = TimerStates.STOPPED;
-        this.storedElapsedTime = 0;
-        this.totalTime = DEFAULT_TIMER_MILLIS_VALUE;
+
+    private Media music;
+    private MediaPlayer mediaPlayer;
+    private boolean hasRung;
+
+    public MyTimer(String timerString) {
+        this();
+        this.totalTime = MyFormatter.timeStringToLongMillisecondsTime(timerString);
+
+        hasRung = this.totalTime <= 0;
     }
     
     public MyTimer() {
         this.state = TimerStates.STOPPED;
         this.storedElapsedTime = 0;
         this.totalTime = DEFAULT_TIMER_MILLIS_VALUE;
+
+        music = new Media(new File(TimerTabController.DEFAULT_ALARM_SOUND_FILE_PATH).toURI().toString());
+        mediaPlayer = new MediaPlayer(music);
+
+        hasRung = DEFAULT_TIMER_MILLIS_VALUE <= 0;
     }
     
     public static String getDefaultTimerStringValue() {
-        return DEFAULT_TIMER_STRING_VALUE;
+        return MyFormatter.longMillisecondsTimeToTimeString(DEFAULT_TIMER_MILLIS_VALUE);
     }
     
     public long getTotalTime() {
@@ -35,21 +44,17 @@ public class MyTimer implements Startable {
     public void setNewTotalTime(long totalTime) {
         this.totalTime = totalTime;
         this.storedElapsedTime = 0;
+        if (totalTime > 0) {
+            this.hasRung = false;
+        }
+        this.mediaPlayer.stop();
     }
     
     TimerStates getState() {
         return state;
     }
     
-    public String getTimerStringProperty() {
-        return timerStringProperty.get();
-    }
-    
-    public StringProperty timerStringPropertyProperty() {
-        return timerStringProperty;
-    }
-    
-    long getRemainingTime() {
+    public long getRemainingTime() {
 //        System.out.println("state: " + this.state.toString()
 //                                   + "\ntotal time: " + totalTime
 //                                   + "\nstored elapsed time: " + storedElapsedTime
@@ -64,11 +69,21 @@ public class MyTimer implements Startable {
         }
         return -1;
     }
+
+    public long getRemainingTimeAndRingOnPassing() {
+        if (this.getRemainingTime() <= 0 && !hasRung) {
+            hasRung = true;
+            mediaPlayer.play();
+        }
+        return this.getRemainingTime();
+    }
+
+
     
     @Override
     public boolean start() {
         if (this.state.isRunning() ) {
-            System.out.println("Already running.");
+//            System.out.println("Already running.");
             return false;
         }
         
@@ -98,13 +113,13 @@ public class MyTimer implements Startable {
 //        daemonTimer.setDaemon(true);
 //        daemonTimer.start();
 //
-        
+
         return true;
     }
     
     @Override
     public boolean stop() {
-        if(this.state == TimerStates.STOPPED) {
+        if (this.state == TimerStates.STOPPED) {
             System.out.println("Already stopped.");
             return false;
         }
@@ -112,6 +127,7 @@ public class MyTimer implements Startable {
         this.state = TimerStates.STOPPED;
         this.storedElapsedTime = 0;
         this.startNanoTime = 0;
+        this.mediaPlayer.stop();
         return true;
     }
     
@@ -127,8 +143,17 @@ public class MyTimer implements Startable {
         
         return true;
     }
-    
-//        public static enum TimerStates {
+
+    @Override
+    public boolean reset() {
+        if (this.state != TimerStates.STOPPED) {
+            this.state = TimerStates.STOPPED;
+        }
+        this.storedElapsedTime = 0;
+        return true;
+    }
+
+    //        public static enum TimerStates {
 //        STARTED {
 //            boolean isStarted() { return true; }
 //            boolean isRunning() { return true; }

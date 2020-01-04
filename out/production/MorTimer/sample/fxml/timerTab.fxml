@@ -26,7 +26,8 @@
                 <Button fx:id="addTimerButtonTopDefault" text="+" onAction="#addTimer"/>
                 <HBox fx:id="defaultTimerHBox" alignment="BASELINE_CENTER">
                     <Button text="X" onAction="#deleteTimerHBox"/>
-                    <TextField fx:id="defaultTimerTextField" text="0:01:00.000" onKeyReleased="#updateTimerTotalTime"/>
+                    <Button text="Reset" onAction="#resetTimer"/>
+                    <TextField fx:id="defaultTimerTextField" onKeyReleased="#updateTimerTotalTime"/>
                     <Button text="Start" onAction="#toggleTimer"/>
                 </HBox>
                 <Button text="+" onAction="#addTimer"/>
@@ -34,7 +35,7 @@
         </center>
         <right>
             <VBox alignment="CENTER">
-                <Button text="Start in sequence"/>
+                <ToggleButton fx:id="sequenceToggleButton" text="Start next in sequence automatically"/>
             </VBox>
         </right>
     </BorderPane>

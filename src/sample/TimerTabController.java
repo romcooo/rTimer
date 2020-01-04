@@ -7,17 +7,28 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Timer;
 
 public class TimerTabController {
-    public static final int TIMER_HBOX_TEXTFIELD_INDEX = 1;
-    public static final int TIMER_HBOX_STARTSTOP_BUTTON_INDEX = 2;
+    public static final int TIMER_HBOX_TEXTFIELD_INDEX = 2;
+    public static final int TIMER_HBOX_STARTSTOP_BUTTON_INDEX = 3;
+    public static final String DEFAULT_ALARM_SOUND_FILE_PATH = "I:\\\\Documents\\\\lib\\\\Sounds\\\\Alarm01.wav";
+
+//    String musicFile = "I:\\Documents\\lib\\Sounds\\Alarm01.wav";
+//    Media media = new Media(new File(musicFile).toURI().toString());
+//    MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.play();
     
     @FXML
     private Tab timerTab;
@@ -29,6 +40,8 @@ public class TimerTabController {
     private VBox timerCenterVBox1;
     @FXML
     private Button addTimerButtonTopDefault;
+    @FXML
+    private ToggleButton sequenceToggleButton;
     
     private Map<HBox, MyTimer> timers = new HashMap<>();
     
@@ -36,12 +49,15 @@ public class TimerTabController {
         @Override
         public void handle(long l) {
             for (HBox hBox : timers.keySet()) {
+                MyTimer currentTimer = timers.get(hBox);
                 if (hBox.getChildren().get(TIMER_HBOX_TEXTFIELD_INDEX) instanceof TextField
-                        && timers.get(hBox).getState().isRunning()) {
+                        && currentTimer.getState().isRunning()) {
                     TextField currentField = (TextField) hBox.getChildren().get(TIMER_HBOX_TEXTFIELD_INDEX);
-                    currentField.setText(MyFormatter.longMillisecondsTimeToTimeString(
-                            timers.get(hBox).getRemainingTime())
-                                        );
+                    long remainingTime = currentTimer.getRemainingTimeAndRingOnPassing();
+                    currentField.setText(MyFormatter.longMillisecondsTimeToTimeString(remainingTime));
+                    if (sequenceToggleButton.isSelected() && remainingTime <= 0) {
+                        startNextTimerInSequence(hBox);
+                    }
                 }
             }
         }
@@ -50,6 +66,7 @@ public class TimerTabController {
     @FXML
     protected void initialize() {
         timers.put(defaultTimerHBox, new MyTimer());
+        defaultTimerTextField.setText(MyTimer.getDefaultTimerStringValue());
     }
     
     @FXML
@@ -97,7 +114,18 @@ public class TimerTabController {
             pauseTimer(parentHBox);
         }
         
-        System.out.println(timers.get(defaultTimerHBox).getRemainingTime());
+//        System.out.println(timers.get(defaultTimerHBox).getRemainingTime());
+    }
+
+    @FXML
+    public void startNextTimerInSequence(HBox parentHBox) {
+        int index = timerCenterVBox1.getChildren().indexOf(parentHBox);
+        if (timerCenterVBox1.getChildren().size() > index) {
+            if (timerCenterVBox1.getChildren().get(index + 1) instanceof HBox) {
+                HBox nextHBox = (HBox) timerCenterVBox1.getChildren().get(index + 1);
+                startTimer(nextHBox);
+            }
+        }
     }
     
     private boolean startTimer(HBox parentHBox) throws IllegalArgumentException {
@@ -107,10 +135,12 @@ public class TimerTabController {
         }
         Button button = (Button) parentHBox.getChildren().get(TIMER_HBOX_STARTSTOP_BUTTON_INDEX);
         
-        timers.get(parentHBox).start();
-        button.setText("Pause");
-        
-        return true;
+        if (timers.get(parentHBox).start()) {
+            button.setText("Pause");
+            return true;
+        }
+
+        return false;
     }
     
     private boolean pauseTimer(HBox parentHBox) {
@@ -127,8 +157,31 @@ public class TimerTabController {
         
         return true;
     }
-    
-    @FXML private boolean addTimer(ActionEvent e) {
+
+    @FXML
+    private void resetTimer(ActionEvent e) {
+        Button pressedButton;
+        HBox parentHBox;
+
+        if (e.getSource() instanceof Button) {
+            pressedButton = (Button) e.getSource();
+        } else {
+            throw new IllegalCallerException("Exception during startTimer() - function triggered by a component not corresponding to a specific timer;");
+        }
+        if (pressedButton.getParent() instanceof HBox) {
+            parentHBox = (HBox) pressedButton.getParent();
+        } else {
+            throw new IllegalCallerException("Exception during startTimer() - function triggered by a component without a parent HBox;");
+        }
+
+        MyTimer currentTimer = timers.get(parentHBox);
+
+        currentTimer.reset();
+        updateTimerTextField(parentHBox);
+    }
+
+    @FXML
+    private boolean addTimer(ActionEvent e) {
         Button pressedButton;
         if (e.getSource() instanceof Button) {
             pressedButton = (Button) e.getSource();
@@ -141,14 +194,22 @@ public class TimerTabController {
         Button deleteButton = new Button("X");
         deleteButton.setCancelButton(true);
         deleteButton.setOnAction(this::deleteTimerHBox);
-    
+
+        Button resetButton = new Button("Reset");
+        resetButton.setOnAction(this::resetTimer);
+
         TextField newTimerTextField = new TextField();
         newTimerTextField.setOnKeyReleased(this::updateTimerTotalTime);
         
         Button startStopButton = new Button("Start");
         startStopButton.setOnAction(this::toggleTimer);
-        
-        newHBox.getChildren().addAll(deleteButton, newTimerTextField, startStopButton);
+
+
+        newHBox.getChildren().addAll( //Order matters, see indices in constants
+                deleteButton,
+                resetButton,
+                newTimerTextField,
+                startStopButton);
         newHBox.setAlignment(Pos.BASELINE_CENTER);
         
         MyTimer newTimer = new MyTimer();
@@ -163,7 +224,8 @@ public class TimerTabController {
         return true;
     }
     
-    @FXML void updateTimerTotalTime(KeyEvent e) throws IllegalCallerException {
+    @FXML
+    void updateTimerTotalTime(KeyEvent e) throws IllegalCallerException {
         TextField updatedTextField;
         if (e.getSource() instanceof TextField) {
             updatedTextField = (TextField) e.getSource();
@@ -194,8 +256,8 @@ public class TimerTabController {
         }
     
         timerToUpdate.setNewTotalTime(newTime);
-        System.out.println("new time: " + MyFormatter.longMillisecondsTimeToTimeString(newTime));
-        System.out.println("new time in millis: " + newTime);
+        System.out.println("Time set to: " + MyFormatter.longMillisecondsTimeToTimeString(newTime));
+//        System.out.println("new time in millis: " + newTime);
     }
     
     @FXML
