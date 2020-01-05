@@ -5,24 +5,22 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import java.util.InputMismatchException;
 
 public class TimerHBox extends HBox {
-    public static final int TIMER_HBOX_TEXTFIELD_INDEX = 2;
-    public static final int TIMER_HBOX_STARTSTOP_BUTTON_INDEX = 3;
-    public static final String DEFAULT_ALARM_SOUND_FILE_PATH = "I:\\\\Documents\\\\lib\\\\Sounds\\\\Alarm01.wav";
-
-    Button deleteButton;
-    Button resetButton;
-    TextField newTimerTextField;
-    Button startStopButton;
-    MyTimer timer;
-    TimerTabController controller;
+    private Button deleteButton;
+    private Button resetButton;
+    private TextField newTimerTextField;
+    private Button startStopButton;
+    private MyTimer timer;
+    private TimerTabController controller;
 
     public TimerHBox(TimerTabController controller) {
         this.controller = controller;
+        this.timer = new MyTimer();
         this.deleteButton = new Button("X");
         this.resetButton = new Button("Reset");
         this.newTimerTextField = new TextField();
@@ -30,15 +28,16 @@ public class TimerHBox extends HBox {
 
         this.deleteButton.setCancelButton(true);
         deleteButton.setOnAction(this::deleteThis);
+
         resetButton.setOnAction(this::resetTimer);
+
         newTimerTextField.setOnKeyReleased(this::updateTimerTotalTime);
-        startStopButton.setOnAction(this::toggleTimer);
-
-        this.timer = new MyTimer();
-
+        newTimerTextField.setOnMouseClicked(this::handleTimerFocused);
         newTimerTextField.setText(MyFormatter.longMillisecondsTimeToTimeString(timer.getRemainingTime()));
 
-        this.getChildren().addAll( //Order matters, see indices in constants
+        startStopButton.setOnAction(this::toggleTimer);
+
+        this.getChildren().addAll(
                                       deleteButton,
                                       resetButton,
                                       newTimerTextField,
@@ -57,49 +56,64 @@ public class TimerHBox extends HBox {
         } else {
             pauseTimer();
         }
-
 //        System.out.println(timers.get(defaultTimerHBox).getRemainingTime());
     }
 
-    private boolean startTimer() throws IllegalArgumentException {
+    boolean startTimer() throws IllegalArgumentException {
         if (timer.start()) {
             startStopButton.setText("Pause");
+//            newTimerTextField.setEditable(false);
             return true;
         }
         return false;
     }
 
+    void startStoppedTimer() throws IllegalArgumentException {
+        if (!timer.getState().isStarted()) { //isStarted -> has been started at least once
+            this.startTimer();
+        }
+    }
+
     private boolean pauseTimer() {
         timer.pause();
         startStopButton.setText("Start");
-
-        updateTimerTextField(); //because the gui sync currently only happens when a timer is running,
+//        newTimerTextField.setEditable(true);
+        refreshDisplayedTime(false); //because the gui sync currently only happens when a timer is running,
         // this ensures it will be in sync after pause
 
         return true;
     }
 
-    void updateTimerTextField() throws IllegalArgumentException {
-        newTimerTextField.setText(MyFormatter.longMillisecondsTimeToTimeString(timer.getRemainingTime()));
+    void refreshDisplayedTime(boolean ringIfTime) throws IllegalArgumentException {
+        if (ringIfTime) {
+            newTimerTextField.setText(MyFormatter.longMillisecondsTimeToTimeString(timer.getRemainingTimeAndRingOnPassing()));
+        } else {
+            newTimerTextField.setText(MyFormatter.longMillisecondsTimeToTimeString(timer.getRemainingTime()));
+        }
     }
 
     private void resetTimer(ActionEvent e) {
         timer.reset();
-        updateTimerTextField();
+        startStopButton.setText("Start");
+        refreshDisplayedTime(false);
     }
 
-    void updateTimerTotalTime(KeyEvent e) throws IllegalCallerException {
+    private void updateTimerTotalTime(KeyEvent e) throws IllegalCallerException {
         long newTime;
         try {
             newTime = MyFormatter.timeStringToLongMillisecondsTime(newTimerTextField.getText());
+            timer.setNewTotalTime(newTime);
+            System.out.println("Time set to: " + MyFormatter.longMillisecondsTimeToTimeString(newTime));
         } catch (InputMismatchException ex) {
             ex.printStackTrace();
-            return;
         }
-
-        timer.setNewTotalTime(newTime);
-        System.out.println("Time set to: " + MyFormatter.longMillisecondsTimeToTimeString(newTime));
 //        System.out.println("new time in millis: " + newTime);
+    }
+
+    private void handleTimerFocused(MouseEvent mouseEvent) {
+        if (!timer.getState().isRunning()) {
+            timer.refresh();
+        }
     }
 
     private void deleteThis(ActionEvent e) {

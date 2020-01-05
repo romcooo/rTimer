@@ -6,7 +6,7 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 public class MyTimer implements Startable {
-    private static final long DEFAULT_TIMER_MILLIS_VALUE = 60000;
+    private static final long DEFAULT_TIMER_MILLIS_VALUE = 1000;
 
     private long startNanoTime, storedElapsedTime, totalTime;
     private TimerStates state;
@@ -41,19 +41,10 @@ public class MyTimer implements Startable {
         return totalTime;
     }
     
-    public void setNewTotalTime(long totalTime) {
-        this.totalTime = totalTime;
-        this.storedElapsedTime = 0;
-        if (totalTime > 0) {
-            this.hasRung = false;
-        }
-        this.mediaPlayer.stop();
-    }
-    
     TimerStates getState() {
         return state;
     }
-    
+
     public long getRemainingTime() {
 //        System.out.println("state: " + this.state.toString()
 //                                   + "\ntotal time: " + totalTime
@@ -77,8 +68,6 @@ public class MyTimer implements Startable {
         }
         return this.getRemainingTime();
     }
-
-
     
     @Override
     public boolean start() {
@@ -89,36 +78,17 @@ public class MyTimer implements Startable {
         
         this.startNanoTime = System.nanoTime();
         this.state = TimerStates.RUNNING;
-//
-//        Runnable startTimerRunnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                while(state.isRunning()) {
-//                    Platform.runLater(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            timerStringProperty.set(MyFormatter.longMillisecondsTimeToTimeString(getRemainingTime()));
-//                        }
-//                    });
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        };
-//
-//        Thread daemonTimer = new Thread(startTimerRunnable);
-//        daemonTimer.setDaemon(true);
-//        daemonTimer.start();
-//
 
         return true;
     }
     
     @Override
     public boolean stop() {
+        this.stopAndUpdate(this.totalTime);
+        return true;
+    }
+
+    public boolean stopAndUpdate(long timeToSet) {
         if (this.state == TimerStates.STOPPED) {
             System.out.println("Already stopped.");
             return false;
@@ -128,9 +98,19 @@ public class MyTimer implements Startable {
         this.storedElapsedTime = 0;
         this.startNanoTime = 0;
         this.mediaPlayer.stop();
+        this.totalTime = timeToSet;
+        this.hasRung = this.totalTime <= 0;
         return true;
     }
-    
+
+    public void setNewTotalTime(long newTotalTime) {
+        this.stopAndUpdate(newTotalTime);
+    }
+
+    public void refresh() {
+        this.state = TimerStates.STOPPED;
+    }
+
     @Override
     public boolean pause() {
         if(this.state == TimerStates.PAUSED) {
@@ -148,6 +128,10 @@ public class MyTimer implements Startable {
     public boolean reset() {
         if (this.state != TimerStates.STOPPED) {
             this.state = TimerStates.STOPPED;
+        }
+        if (this.totalTime > 0) {
+            this.hasRung = false;
+            this.mediaPlayer.stop();
         }
         this.storedElapsedTime = 0;
         return true;
