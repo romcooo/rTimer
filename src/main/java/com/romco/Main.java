@@ -1,5 +1,6 @@
 package com.romco;
 
+import com.romco.utilities.UserSettings;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,29 +8,27 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        initializeSettings();
-        
+        UserSettings settings = initializeSettings();
+        int w = 800;
+        int h = 600;
+        if (settings != null) {
+            w = Integer.parseInt(settings.getWindowSettings().get("defaultWidth"));
+            h = Integer.parseInt(settings.getWindowSettings().get("defaultHeight"));
+        }
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
         primaryStage.setTitle("Mortimer");
-        primaryStage.setScene(new Scene(root, 800, 700));
+        primaryStage.setScene(new Scene(root, w, h));
         primaryStage.show();
-        
-        
     }
 
     @Override
     public void stop() throws Exception {
+        //storeSettingsOnClose
         super.stop();
     }
 
@@ -37,17 +36,14 @@ public class Main extends Application {
         launch(args);
     }
     
-    private void initializeSettings() {
+    private UserSettings initializeSettings() {
         InputStream inputStream = getClass().getResourceAsStream("/datastore/userSettings.yaml");
-        try (Scanner scanner = new Scanner(inputStream)) {
-            while (scanner.hasNextLine()) {
-                String nextLine = scanner.nextLine();
-                System.out.println(nextLine);
-                if (nextLine.isBlank()) {
-                    System.out.println("blank");
-                    
-                }
-            }
+        if (inputStream == null) {
+            return null;
+        } else {
+            UserSettings settings = UserSettings.createFromYaml(inputStream);
+            System.out.println(settings.getWindowSettings().get("defaultTab"));
+            return settings;
         }
     }
 }

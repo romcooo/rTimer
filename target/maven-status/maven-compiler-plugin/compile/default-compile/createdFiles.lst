@@ -13,6 +13,7 @@ com\romco\TimerTabController.class
 com\romco\StopwatchTabController$1.class
 com\romco\TimerTabController$1.class
 com\romco\ClockTabController$1.class
+com\romco\utilities\UserSettings.class
 com\romco\TimerStates$1.class
 com\romco\TimerStates$3.class
 com\romco\Startable.class
