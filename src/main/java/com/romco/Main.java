@@ -8,29 +8,18 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        String sceneFile = "/../../../resources/fxml/mainWindow.fxml";
-//        Parent testRoot = null;
-//        URL url  = null;
-//        try
-//        {
-//            url  = getClass().getResource( sceneFile );
-//            testRoot = FXMLLoader.load( url );
-//            System.out.println( "  fxmlResource = " + sceneFile );
-//        }
-//        catch ( Exception ex )
-//        {
-//            System.out.println( "Exception on FXMLLoader.load()" );
-//            System.out.println( "  * url: " + url );
-//            System.out.println( "  * " + ex );
-//            System.out.println( "    ----------------------------------------\n" );
-//            throw ex;
-//        }
-//        System.out.println(getClass().getResource("../../../resources/fxml/mainWindow.fxml"));
+        initializeSettings();
+        
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
         primaryStage.setTitle("Mortimer");
         primaryStage.setScene(new Scene(root, 800, 700));
@@ -48,18 +37,17 @@ public class Main extends Application {
         launch(args);
     }
     
-    private void initialize() {
-        try (ObjectInputStream locFile = new ObjectInputStream(
-                new BufferedInputStream(
-                        new FileInputStream(
-                                "C:\\Users\\roman.stubna\\OneDrive - Home Credit International a.s\\" +
-                                        "Personal\\git\\MorTimer\\src\\sample\\datastore\\userSettings.yaml")))) {
-            
-    
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void initializeSettings() {
+        InputStream inputStream = getClass().getResourceAsStream("/datastore/userSettings.yaml");
+        try (Scanner scanner = new Scanner(inputStream)) {
+            while (scanner.hasNextLine()) {
+                String nextLine = scanner.nextLine();
+                System.out.println(nextLine);
+                if (nextLine.isBlank()) {
+                    System.out.println("blank");
+                    
+                }
+            }
         }
     }
 }
