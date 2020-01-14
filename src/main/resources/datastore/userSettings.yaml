@@ -1,9 +1,8 @@
 # defaults
 ## window properties
-windowSettings:
-  defaultTab: timerTab
-  defaultWidth: 800
-  defaultHeight: 600
+defaultTab: timerTab
+defaultWidth: 800
+defaultHeight: 600
 
 
 

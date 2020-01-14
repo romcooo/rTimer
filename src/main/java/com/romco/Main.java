@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Collections;
 
 public class Main extends Application {
 
@@ -17,8 +18,8 @@ public class Main extends Application {
         int w = 800;
         int h = 600;
         if (settings != null) {
-            w = Integer.parseInt(settings.getWindowSettings().get("defaultWidth"));
-            h = Integer.parseInt(settings.getWindowSettings().get("defaultHeight"));
+            w = settings.getDefaultWidth();
+            h = settings.getDefaultHeight();
         }
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
         primaryStage.setTitle("Mortimer");
@@ -39,10 +40,11 @@ public class Main extends Application {
     private UserSettings initializeSettings() {
         InputStream inputStream = getClass().getResourceAsStream("/datastore/userSettings.yaml");
         if (inputStream == null) {
-            return null;
+            System.out.println("using default class");
+            return new UserSettings();
         } else {
-            UserSettings settings = UserSettings.createFromYaml(inputStream);
-            System.out.println(settings.getWindowSettings().get("defaultTab"));
+            UserSettings settings = UserSettings.loadSettingsFromYaml(inputStream);
+            System.out.println(settings.getDefaultHeight());
             return settings;
         }
     }
