@@ -14,38 +14,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        UserSettings settings = initializeSettings();
-        int w = 800;
-        int h = 600;
-        if (settings != null) {
-            w = settings.getDefaultWidth();
-            h = settings.getDefaultHeight();
-        }
+        //load settings
+        UserSettings settings = UserSettings.loadSettingsFromYaml();
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
         primaryStage.setTitle("Mortimer");
-        primaryStage.setScene(new Scene(root, w, h));
+        primaryStage.setScene(new Scene(root, settings.getDefaultWidth(), settings.getDefaultHeight()));
         primaryStage.show();
     }
 
     @Override
     public void stop() throws Exception {
-        //storeSettingsOnClose
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
+//        UserSettings.getInstance().setDefaultHeight((int) root.getScene().getHeight());
+//        UserSettings.getInstance().setDefaultWidth((int) root.getScene().getWidth());
+//        UserSettings.storeSettingsToYaml();
         super.stop();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-    
-    private UserSettings initializeSettings() {
-        InputStream inputStream = getClass().getResourceAsStream("/datastore/userSettings.yaml");
-        if (inputStream == null) {
-            System.out.println("using default class");
-            return new UserSettings();
-        } else {
-            UserSettings settings = UserSettings.loadSettingsFromYaml(inputStream);
-            System.out.println(settings.getDefaultHeight());
-            return settings;
-        }
-    }
+
 }

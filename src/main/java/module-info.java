@@ -7,7 +7,10 @@ module MorTimer {
     requires snakeyaml;
     
     requires java.sql; //required by snakeyaml for some reason...
-    
+
+    requires logback.core;
+    requires logback.classic;
+
     opens com.romco;
     opens com.romco.utilities;
 }
