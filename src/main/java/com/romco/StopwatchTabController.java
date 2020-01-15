@@ -1,5 +1,6 @@
 package com.romco;
 
+import com.romco.utilities.MyFormatter;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -73,8 +74,8 @@ public class StopwatchTabController {
         stopwatches.put(defaultStopwatchHBox, new StopWatch());
     }
     
-
-    public void startAllStopwatches() {
+    @FXML
+    private void startAllStopwatches() {
         //TODO
         System.out.println("asd");
     }
@@ -171,7 +172,7 @@ public class StopwatchTabController {
     }
 
     @FXML
-    public boolean addStopwatch(ActionEvent e) {
+    private boolean addStopwatch(ActionEvent e) {
         HBox newTimerHBox = new HBox();
         newTimerHBox.setAlignment(Pos.BASELINE_CENTER);
         newTimerHBox.setId(STOPWATCH_HBOX_ID_PREFIX + hBoxId++);
@@ -217,7 +218,7 @@ public class StopwatchTabController {
     }
 
     @FXML
-    public void deleteStopwatchHBox(ActionEvent e) {
+    private void deleteStopwatchHBox(ActionEvent e) {
         Button pressedButton;
 
         if (e.getSource() instanceof Button) {

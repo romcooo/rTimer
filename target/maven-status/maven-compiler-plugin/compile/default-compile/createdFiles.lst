@@ -1,4 +1,3 @@
-com\romco\MyFormatter.class
 com\romco\MainController.class
 com\romco\Main.class
 com\romco\ClockTabController.class
@@ -10,6 +9,7 @@ com\romco\TimerStates.class
 com\romco\TimerHBox.class
 module-info.class
 com\romco\TimerTabController.class
+com\romco\utilities\MyFormatter.class
 com\romco\StopwatchTabController$1.class
 com\romco\TimerTabController$1.class
 com\romco\ClockTabController$1.class

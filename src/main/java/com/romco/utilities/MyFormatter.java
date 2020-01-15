@@ -1,13 +1,12 @@
-package com.romco;
+package com.romco.utilities;
 
 import java.util.InputMismatchException;
 
-class MyFormatter {
+public class MyFormatter {
     private static final int MILLIS_TO_HOURS = 3600000;
     private static final int MILLIS_TO_MINUTES = 60000;
     private static final int MILLIS_TO_SECONDS = 1000;
-
-
+    
     /**
      * Takes a time parameter in total elapsed milliseconds,
      * and returns a string formatted by default to "HH:MI:SS.fff".
@@ -21,7 +20,7 @@ class MyFormatter {
      * eg. "00:01:02:350"
      *
      */
-    static String longMillisecondsTimeToTimeString(long l) {
+    public static String longMillisecondsTimeToTimeString(long l) {
         return String.format("%01d:%02d:%02d.%03d",
                 l / MILLIS_TO_HOURS,
                 l % MILLIS_TO_HOURS / MILLIS_TO_MINUTES,
@@ -29,7 +28,21 @@ class MyFormatter {
                 l % MILLIS_TO_HOURS % MILLIS_TO_MINUTES % MILLIS_TO_SECONDS);
     }
     
-    static long timeStringToLongMillisecondsTime(String s) throws InputMismatchException {
+    /**
+     * Takes a "time string" in format H+:m+:s+.f+,
+     * and returns the time in milliseconds
+     *
+     * @param s
+     * Time as a string, eg. "HH:MI:SS.fff"
+     *
+     * @return
+     * For input "00:01:02:350", returns 62350
+     *
+     * @throws InputMismatchException
+     * If the input does not conform to the following regex: "\d+:\d+:\d.\d+"
+     * in other words, digits:digits:digits.digits (where digits is one or more digit)
+     */
+    public static long timeStringToLongMillisecondsTime(String s) throws InputMismatchException {
         String[] values = s.split("[:.]");
         if (values.length < 4) {
             throw new InputMismatchException("Input string cannot be parsed;");

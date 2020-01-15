@@ -1,9 +1,6 @@
 package com.romco;
 
-import com.romco.MyFormatter;
-import com.romco.Startable;
-import com.romco.TimerStates;
-import com.romco.TimerTabController;
+import com.romco.utilities.MyFormatter;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 

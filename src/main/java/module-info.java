@@ -10,7 +10,8 @@ module MorTimer {
 
     requires logback.core;
     requires logback.classic;
-
+    requires slf4j.api;
+    
     opens com.romco;
     opens com.romco.utilities;
 }

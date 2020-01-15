@@ -1,5 +1,7 @@
 package com.romco;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.romco.utilities.UserSettings;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.util.Collections;
-
 public class Main extends Application {
+    
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,9 +29,10 @@ public class Main extends Application {
 //        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
 //        UserSettings.getInstance().setDefaultHeight((int) root.getScene().getHeight());
 //        UserSettings.getInstance().setDefaultWidth((int) root.getScene().getWidth());
-        UserSettings.getInstance().setDefaultHeight(800);
-        UserSettings.getInstance().setDefaultWidth(600);
-        UserSettings.storeSettingsToYaml();
+//        UserSettings.getInstance().setDefaultHeight(800);
+//        UserSettings.getInstance().setDefaultWidth(600);
+//        UserSettings.storeSettingsToYaml();
+        logger.info("Logger test.");
         super.stop();
     }
 

@@ -1,6 +1,6 @@
 package com.romco;
 
-import com.romco.TimerTabController;
+import com.romco.utilities.MyFormatter;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -19,7 +19,7 @@ public class TimerHBox extends HBox {
     private MyTimer timer;
     private TimerTabController controller;
 
-    public TimerHBox(TimerTabController controller) {
+    TimerHBox(TimerTabController controller) {
         this.controller = controller;
         this.timer = new MyTimer();
         this.deleteButton = new Button("X");
@@ -47,7 +47,7 @@ public class TimerHBox extends HBox {
         this.setAlignment(Pos.BASELINE_CENTER);
     }
 
-    public MyTimer getTimer() {
+    MyTimer getTimer() {
         return timer;
     }
 
@@ -60,7 +60,7 @@ public class TimerHBox extends HBox {
 //        System.out.println(timers.get(defaultTimerHBox).getRemainingTime());
     }
 
-    boolean startTimer() throws IllegalArgumentException {
+    private boolean startTimer() throws IllegalArgumentException {
         if (timer.start()) {
             startStopButton.setText("Pause");
 //            newTimerTextField.setEditable(false);
