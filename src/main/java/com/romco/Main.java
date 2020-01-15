@@ -28,7 +28,9 @@ public class Main extends Application {
 //        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
 //        UserSettings.getInstance().setDefaultHeight((int) root.getScene().getHeight());
 //        UserSettings.getInstance().setDefaultWidth((int) root.getScene().getWidth());
-//        UserSettings.storeSettingsToYaml();
+        UserSettings.getInstance().setDefaultHeight(800);
+        UserSettings.getInstance().setDefaultWidth(600);
+        UserSettings.storeSettingsToYaml();
         super.stop();
     }
 

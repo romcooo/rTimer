@@ -5,8 +5,8 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.*;
-import java.util.Map;
-import java.util.logging.Logger;
+import java.net.URL;
+import java.nio.file.FileSystems;
 
 public class UserSettings {
     private static UserSettings instance;
@@ -56,15 +56,10 @@ public class UserSettings {
 
     public synchronized static UserSettings loadSettingsFromYaml() {
         if (instance == null) {
-            InputStream inputStream = Main.class.getResourceAsStream("/datastore/userSettings.yaml");
+            InputStream inputStream = Main.class.getResourceAsStream("/data/userSettings.yaml");
             if (inputStream == null) {
                 System.out.println("using default class and creating settings yaml file");
                 UserSettings userSettings = new UserSettings();
-//            Yaml newYaml = new Yaml();
-//            File file = new File("/datastore/userSettings1.yaml");
-//            file.createNewFile();
-//            FileWriter writer = new FileWriter("/datastore/userSettings1.yaml");
-//            newYaml.dump(userSettings, writer);
                 instance = userSettings;
             } else {
                 Constructor c = new Constructor(UserSettings.class);
@@ -85,7 +80,8 @@ public class UserSettings {
         }
         Yaml yaml = new Yaml();
         try {
-            FileWriter fileWriter = new FileWriter(new File("\\datastore\\userSettings.yaml"));
+            System.out.println(FileSystems.getDefault().toString());
+            FileWriter fileWriter = new FileWriter(new File("C:\\Users\\roman.stubna\\OneDrive - Home Credit International a.s\\Personal\\git\\MorTimer\\src\\main\\resources\\data\\userSettings.yaml"));
             System.out.println(yaml.dump(instance));
             yaml.dump(instance, fileWriter);
             return true;
