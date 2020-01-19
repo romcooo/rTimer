@@ -9,6 +9,7 @@ com\romco\StopwatchTabController$DeleteButtonBuilder.class
 com\romco\TimerStates.class
 com\romco\TimerHBox.class
 module-info.class
+com\romco\persistence\ComponentParser.class
 com\romco\TimerTabController.class
 com\romco\utilities\MyFormatter.class
 com\romco\StopwatchTabController$1.class
@@ -18,4 +19,5 @@ com\romco\utilities\UserSettings.class
 com\romco\TimerStates$1.class
 com\romco\TimerStates$3.class
 com\romco\Startable.class
+com\romco\persistence\FileSaver.class
 com\romco\MyTimer.class

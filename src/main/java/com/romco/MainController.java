@@ -1,23 +1,15 @@
 package com.romco;
 
-import com.romco.StopwatchTabController;
+import com.romco.persistence.Persistence;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collection;
 
 public class MainController {
 
@@ -54,7 +46,7 @@ public class MainController {
     }
     
     @FXML
-    private void saveCurrentAs() throws IOException {
+    private void saveCurrentAs() {
         FileChooser fileChooser = new FileChooser();
         logger.info(tabPane.getSelectionModel().getSelectedItem().getId());
         switch (tabPane.getSelectionModel().getSelectedItem().getId()) {
@@ -63,6 +55,7 @@ public class MainController {
                 break;
             case "stopwatchTab":
                 // do not allow saving if a stopwatch is running
+                // TODO place a checker method into the appropriate controller instead of iterating here
                 for (StopWatch stopwatch : stopwatchTabController.getStopwatches()) {
                     if (stopwatch.isStarted() && !stopwatch.isSuspended()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING, "Please stop stopwatches before saving.", ButtonType.OK);
@@ -79,58 +72,34 @@ public class MainController {
                 break;
         }
 
-
-
 //        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext();
 //        fileChooser.setInitialDirectory(new File(context.getEnvironment().getSystemProperties().get("user.home") + "/Desktop"));
 //        fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
 //        logger.info("Initial directory set to: " + fileChooser.getInitialDirectory());
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text", "*.txt"),
-                                                 new FileChooser.ExtensionFilter("csv", "*.csv"),
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("csv", "*.csv"),
                                                  new FileChooser.ExtensionFilter("All", "*.*"));
         
         File file = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
-
         if (file == null) {
             return; //user pressed cancel
         }
-
-        logger.info(file.getPath());
-
-        Path path = Paths.get(file.getPath());
-        StringBuilder dataToWrite = new StringBuilder();
         
         if (clockTab.isSelected()){
-
         }
 
         if (timerTab.isSelected()) {
-            Collection<TimerHBox> timerHBoxes = timerTabController.getCopyOfTimerHBoxes();
-            for (TimerHBox t : timerHBoxes) {
-                MyTimer timer = t.getTimer();
-                dataToWrite.append(timer.getRemainingTime())
-                           .append(",")
-                           .append(timer.getState())
-                           .append(",")
-                           .append(timer.getTotalTime())
-                           .append(";\n");
-                logger.info(dataToWrite.toString());
-            }
-
+            Persistence.saveTimersAs(timerTabController.getCopyOfTimers(), file);
         }
 
         if (stopwatchTab.isSelected()) {
-            Collection<StopWatch> stopWatches = stopwatchTabController.getStopwatches();
-            for (StopWatch stopWatch : stopWatches) {
-                dataToWrite.append(stopWatch.getNanoTime());
-                dataToWrite.append(";\n");
-            }
+//            Collection<StopWatch> stopWatches = stopwatchTabController.getStopwatches();
+//            for (StopWatch stopWatch : stopWatches) {
+//                dataToWrite.append(stopWatch.getNanoTime());
+//                dataToWrite.append(";\n");
+//            }
         }
-    
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            writer.write(dataToWrite.toString());
-        }
+
 
     }
 

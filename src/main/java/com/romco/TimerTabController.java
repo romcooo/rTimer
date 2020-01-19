@@ -23,8 +23,7 @@ public class TimerTabController {
     private Button addTimerButtonTopDefault;
     @FXML
     private ToggleButton sequenceToggleButton;
-    
-//    private Map<HBox, MyTimer> timers = new HashMap<>();
+
     private List<TimerHBox> timerHBoxes = new ArrayList<>();
     
     private AnimationTimer timerTabAnimationTimer = new AnimationTimer() {
@@ -87,7 +86,11 @@ public class TimerTabController {
         timerCenterVBox1.getChildren().remove(timerHBoxToDelete);
     }
 
-    public List<TimerHBox> getCopyOfTimerHBoxes() {
-        return new ArrayList<>(this.timerHBoxes);
+    List<MyTimer> getCopyOfTimers() {
+        ArrayList<MyTimer> myTimers = new ArrayList<>();
+        for (TimerHBox timerHBox : timerHBoxes) {
+            myTimers.add(timerHBox.getTimer());
+        }
+        return myTimers;
     }
 }

@@ -141,29 +141,13 @@ public class MyTimer implements Startable {
         return true;
     }
 
-    //        public static enum TimerStates {
-//        STARTED {
-//            boolean isStarted() { return true; }
-//            boolean isRunning() { return true; }
-//        },
-//        STOPPED {
-//            boolean isStarted() { return false; }
-//            boolean isRunning() { return false; }
-//        },
-//        PAUSED {
-//            boolean isStarted() { return true; }
-//            boolean isRunning() { return false; }
-//        };
-//        abstract boolean isStarted();
-//        abstract boolean isRunning();
-//    }
-    
-//    public static void main(String[] args) {
-//        MyTimer timer = new MyTimer("00:01:02.345");
-//        TimerStates q = timer.getState();
-//        System.out.println(q.toString());
-//        q = TimerStates.STARTED;
-//        System.out.println(q.toString());
-//        System.out.println(timer.getState().toString());
-//    }
+    @Override
+    public String toString() {
+        return "startNanoTime=" + startNanoTime +
+                ", storedElapsedTime=" + storedElapsedTime +
+                ", totalTime=" + totalTime +
+                ", state=" + state +
+                ", musicSource=" + music.getSource() +
+                ", hasRung=" + hasRung + ";";
+    }
 }
