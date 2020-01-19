@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 
 public class TimerHBox extends HBox {

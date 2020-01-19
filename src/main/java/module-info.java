@@ -3,6 +3,7 @@ module MorTimer {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
+    requires javafx.graphics;
     requires org.apache.commons.lang3;
     requires snakeyaml;
     
@@ -11,7 +12,8 @@ module MorTimer {
     requires logback.core;
     requires logback.classic;
     requires slf4j.api;
-    
+    requires spring.context;
+
     opens com.romco;
     opens com.romco.utilities;
 }

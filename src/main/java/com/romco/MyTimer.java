@@ -3,11 +3,14 @@ package com.romco;
 import com.romco.utilities.MyFormatter;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 public class MyTimer implements Startable {
     private static final long DEFAULT_TIMER_MILLIS_VALUE = 1000;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private long startNanoTime, storedElapsedTime, totalTime;
     private TimerStates state;
@@ -73,7 +76,7 @@ public class MyTimer implements Startable {
     @Override
     public boolean start() {
         if (this.state.isRunning() ) {
-//            System.out.println("Already running.");
+            logger.info("Already running.");
             return false;
         }
         
@@ -91,10 +94,10 @@ public class MyTimer implements Startable {
 
     public boolean stopAndUpdate(long timeToSet) {
         if (this.state == TimerStates.STOPPED) {
-            System.out.println("Already stopped.");
+            logger.info("Already stopped.");
             return false;
         }
-//        System.out.println("Stopping.");
+        logger.info("Stopping.");
         this.state = TimerStates.STOPPED;
         this.storedElapsedTime = 0;
         this.startNanoTime = 0;
@@ -115,7 +118,7 @@ public class MyTimer implements Startable {
     @Override
     public boolean pause() {
         if(this.state == TimerStates.PAUSED) {
-            System.out.println("Already paused.");
+            logger.info("Already paused.");
             return false;
         }
         

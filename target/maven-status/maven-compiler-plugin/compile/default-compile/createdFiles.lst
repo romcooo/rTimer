@@ -2,6 +2,7 @@ com\romco\MainController.class
 com\romco\Main.class
 com\romco\ClockTabController.class
 com\romco\StopwatchTabController.class
+com\romco\persistence\Persistence.class
 com\romco\ClockTabController$2.class
 com\romco\TimerStates$2.class
 com\romco\StopwatchTabController$DeleteButtonBuilder.class

@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.romco" level="DEBUG"/>
+    <logger name="com.romco" level="TRACE"/>
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

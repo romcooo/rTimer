@@ -1,6 +1,8 @@
 package com.romco.utilities;
 
 import com.romco.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -10,6 +12,7 @@ import java.nio.file.FileSystems;
 
 public class UserSettings {
     private static UserSettings instance;
+    private static Logger logger = LoggerFactory.getLogger(UserSettings.class);
     //values pre-defined below are for case no file with settings is found
     private String defaultTab;
     private int defaultWidth;
@@ -58,7 +61,7 @@ public class UserSettings {
         if (instance == null) {
             InputStream inputStream = Main.class.getResourceAsStream("/data/userSettings.yaml");
             if (inputStream == null) {
-                System.out.println("using default class and creating settings yaml file");
+                logger.info("Using default class  yaml file");
                 UserSettings userSettings = new UserSettings();
                 instance = userSettings;
             } else {
@@ -75,7 +78,7 @@ public class UserSettings {
 
     public synchronized static boolean storeSettingsToYaml() {
         if (instance == null) {
-            System.out.println("No settings to store!");
+            logger.info("No settings to store!");
             return false;
         }
         Yaml yaml = new Yaml();
