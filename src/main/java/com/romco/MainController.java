@@ -48,6 +48,9 @@ public class MainController {
     @FXML
     private void saveCurrentAs() {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("csv", "*.csv"),
+                                                 new FileChooser.ExtensionFilter("All", "*.*"));
+
         logger.info(tabPane.getSelectionModel().getSelectedItem().getId());
         switch (tabPane.getSelectionModel().getSelectedItem().getId()) {
             case "timerTab":
@@ -77,14 +80,11 @@ public class MainController {
 //        fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
 //        logger.info("Initial directory set to: " + fileChooser.getInitialDirectory());
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("csv", "*.csv"),
-                                                 new FileChooser.ExtensionFilter("All", "*.*"));
-        
         File file = fileChooser.showSaveDialog(mainBorderPane.getScene().getWindow());
         if (file == null) {
             return; //user pressed cancel
         }
-        
+
         if (clockTab.isSelected()){
         }
 
