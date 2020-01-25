@@ -1,11 +1,9 @@
 package com.romco.persistence;
 
-import com.romco.Argh;
 import com.romco.MyTimer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,7 +45,7 @@ public class ComponentParser {
             case TIMER:
                 ArrayList<Object> timers = new ArrayList<>();
                 for (String line : lines) {
-                    timers.add(MyTimer.MyTimerBuilder.fromString(line));
+                    timers.add(MyTimer.MyTimerFactory.fromString(line));
                 }
                 return timers;
             default:

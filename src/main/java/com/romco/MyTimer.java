@@ -179,7 +179,7 @@ public class MyTimer implements Startable, Argh {
                 ", hasRung=" + hasRung + ";";
     }
 
-    public static class MyTimerBuilder {
+    public static class MyTimerFactory {
         public static MyTimer fromString(String from) {
             MyTimer myTimer = new MyTimer();
             Map<String, String> map = new HashMap<>();
