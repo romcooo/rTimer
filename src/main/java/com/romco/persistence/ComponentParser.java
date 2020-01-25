@@ -1,6 +1,7 @@
 package com.romco.persistence;
 
 import com.romco.MyTimer;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,13 +18,38 @@ public class ComponentParser {
                    .append("\n");
         int count = 0;
         for (MyTimer t : timers) {
-            dataToWrite.append(++count)
-                       .append(", ")
+            dataToWrite.append(", ")
                        .append(t)
                        .append("\n");
             logger.info(dataToWrite.toString());
         }
         return dataToWrite.toString();
+    }
+
+    public static FileType determineFileType(String file) {
+        String firstLine = file.substring(0, file.indexOf("\n"));
+        return FileType.getByString(firstLine);
+    }
+
+    @NotNull
+    public static ArrayList<MyTimer> parseTimersFromFile(String fileContent) {
+        List<String> lines = new ArrayList<>(Arrays.asList(fileContent.split("\n")));
+
+        //remove first line so rest can be passed to a for loop for parsing
+        if (lines.get(0).trim().equalsIgnoreCase(FileType.TIMER.toString())) {
+            lines.remove(0);
+        }
+        if (lines.isEmpty()) {
+            //throw exception
+            throw new InputMismatchException("File is empty.");
+        }
+
+        ArrayList<MyTimer> timers = new ArrayList<>();
+        for (String line : lines) {
+            logger.info("At line: " + line);
+            timers.add(MyTimer.MyTimerFactory.fromString(line));
+        }
+        return timers;
     }
 
     public static ArrayList<Object> parseFile(String fileString) throws InputMismatchException {
@@ -54,7 +80,6 @@ public class ComponentParser {
         if (lines.size() <= 1) {
             throw new InputMismatchException("File contains type, but is otherwise empty.");
         }
-
 
         return null;
     }

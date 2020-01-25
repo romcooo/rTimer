@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MyTimer implements Startable, Argh {
@@ -176,7 +174,7 @@ public class MyTimer implements Startable, Argh {
                 ", totalTime=" + totalTime +
                 ", state=" + state +
                 ", musicSource=" + music.getSource() +
-                ", hasRung=" + hasRung + ";";
+                ", hasRung=" + hasRung;
     }
 
     public static class MyTimerFactory {
@@ -195,9 +193,9 @@ public class MyTimer implements Startable, Argh {
             myTimer.state = TimerStates.getFromString(map.get("state"));
             myTimer.music = new Media(map.get("musicSource"));
             myTimer.hasRung = Boolean.parseBoolean(map.get("hasRung"));
+            logger.info("Built: " + myTimer.toString());
             return myTimer;
         }
-
     }
 
 }

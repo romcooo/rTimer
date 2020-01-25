@@ -34,7 +34,7 @@ public class Main extends Application {
 //        UserSettings.getInstance().setDefaultHeight(800);
 //        UserSettings.getInstance().setDefaultWidth(600);
 //        UserSettings.storeSettingsToYaml();
-        logger.info("Logger test.");
+        logger.info("Stopping.");
         super.stop();
     }
 

@@ -1,5 +1,6 @@
 package com.romco.persistence;
 
+import com.romco.MainController;
 import com.romco.MyTimer;
 import com.romco.TimerTabController;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Persistence {
+
     private static final Logger logger = LoggerFactory.getLogger(Persistence.class);
 
     public static boolean saveTimersAs(Collection<MyTimer> timers, File saveTo) {
@@ -18,23 +20,29 @@ public class Persistence {
         return FileSaver.saveFile(saveTo, toWrite);
     }
 
-    public static boolean loadFile(File fileToLoad, TimerTabController controller) {
+    public static boolean loadFile(File fileToLoad, MainController controller) {
         try {
-            ArrayList list = ComponentParser.parseFile(
-                    FileLoader.loadStringFromFile(fileToLoad));
-            if (list.isEmpty()) {
-                logger.debug("Empty list returned by parser.");
-                return false;
+            String fileContent = FileLoader.loadStringFromFile(fileToLoad);
+            FileType type = ComponentParser.determineFileType(fileContent);
+            switch (type) {
+                case TIMER:
+                    ArrayList<MyTimer> list = ComponentParser.parseTimersFromFile(fileContent);
+                    if (list.isEmpty()) {
+                        logger.debug("Empty list returned by parser.");
+                        return false;
+                    }
+                    TimerTabController ttc = controller.getTimerTabController();
+                    ttc.deleteAllTimerHBoxes();
+                    ttc.addMultipleTimers(list);
+                    return true;
+                default:
+                    break;
             }
-            logger.info(list.get(0).getClass().toString());
-            if (list.get(0) instanceof MyTimer) {
-                // TODO rework controller access
-                controller.addMultipleTimers(list);
-            }
-            return true;
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
 }

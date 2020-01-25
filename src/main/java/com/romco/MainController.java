@@ -2,15 +2,17 @@ package com.romco;
 
 import com.romco.persistence.Persistence;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.util.Collection;
+import java.io.File;
 
 public class MainController {
 
@@ -40,7 +42,12 @@ public class MainController {
 //            }
 //        });
 //    }
-    
+
+
+    public TimerTabController getTimerTabController() {
+        return timerTabController;
+    }
+
     @FXML
     private void setTabSelection() {
         System.out.println(tabPane.getSelectionModel().getSelectedItem().getId());
@@ -113,7 +120,7 @@ public class MainController {
         if (file == null) {
             return; //user pressed cancel
         }
-        Persistence.loadFile(file, timerTabController);
+        Persistence.loadFile(file, this);
     }
 
 }

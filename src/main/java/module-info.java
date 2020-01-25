@@ -13,6 +13,8 @@ module MorTimer {
     requires logback.classic;
     requires slf4j.api;
     requires spring.context;
+    requires spring.core;
+    requires org.jetbrains.annotations;
 
     opens com.romco;
     opens com.romco.utilities;

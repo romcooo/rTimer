@@ -5,13 +5,14 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.FileSystems;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 
 public class TimerTabController {
     private static Logger logger = LoggerFactory.getLogger(TimerTabController.class);
@@ -107,10 +108,11 @@ public class TimerTabController {
         return true;
     }
 
-    public boolean addMultipleTimers(Collection<MyTimer> timers) {
+    public boolean addMultipleTimers(List<MyTimer> timers) {
         int timerHBoxIndex = 0;
         int hBoxIndex = 1;
         for (MyTimer myTimer : timers) {
+            logger.info(myTimer.toString());
             TimerHBox newTimerHBox = new TimerHBox(this, myTimer);
             timerHBoxes.add(timerHBoxIndex++, newTimerHBox);
             timerCenterVBox1.getChildren().add(hBoxIndex++, newTimerHBox);
@@ -124,11 +126,11 @@ public class TimerTabController {
         timerCenterVBox1.getChildren().remove(timerHBoxToDelete);
     }
 
-    void deleteAllTimers() {
+    public void deleteAllTimerHBoxes() {
         for (TimerHBox timerHBox : timerHBoxes) {
-            timerHBoxes.remove(timerHBox);
             timerCenterVBox1.getChildren().remove(timerHBox);
         }
+        timerHBoxes.clear();
     }
 
     List<MyTimer> getCopyOfTimers() {
