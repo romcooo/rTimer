@@ -13,6 +13,16 @@ enum TimerStates {
         public boolean isStarted() { return true; }
         public boolean isRunning() { return false; }
     };
+
+    public static TimerStates getFromString(String from) {
+        for (TimerStates timerStates : TimerStates.values()) {
+            if (timerStates.toString().equalsIgnoreCase(from)) {
+                return timerStates;
+            }
+        }
+        return null;
+    }
+
     abstract boolean isStarted();
     abstract boolean isRunning();
 }

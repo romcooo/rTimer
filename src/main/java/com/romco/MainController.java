@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.Collection;
 
 public class MainController {
 
@@ -101,6 +102,18 @@ public class MainController {
         }
 
 
+    }
+
+    @FXML
+    private void loadFromFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("csv", "*.csv"),
+                                                 new FileChooser.ExtensionFilter("All", "*.*"));
+        File file = fileChooser.showOpenDialog(mainBorderPane.getScene().getWindow());
+        if (file == null) {
+            return; //user pressed cancel
+        }
+        Persistence.loadFile(file, timerTabController);
     }
 
 }

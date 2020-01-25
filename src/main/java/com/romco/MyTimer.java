@@ -7,10 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class MyTimer implements Startable {
+public class MyTimer implements Startable, Argh {
     private static final long DEFAULT_TIMER_MILLIS_VALUE = 1000;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(MyTimer.class);
 
     private long startNanoTime, storedElapsedTime, totalTime;
     private TimerStates state;
@@ -47,6 +51,30 @@ public class MyTimer implements Startable {
     
     TimerStates getState() {
         return state;
+    }
+
+    public void setStartNanoTime(long startNanoTime) {
+        this.startNanoTime = startNanoTime;
+    }
+
+    public void setStoredElapsedTime(long storedElapsedTime) {
+        this.storedElapsedTime = storedElapsedTime;
+    }
+
+    public void setTotalTime(long totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public void setState(TimerStates state) {
+        this.state = state;
+    }
+
+    public void setMusic(Media music) {
+        this.music = music;
+    }
+
+    public void setHasRung(boolean hasRung) {
+        this.hasRung = hasRung;
     }
 
     public long getRemainingTime() {
@@ -150,4 +178,26 @@ public class MyTimer implements Startable {
                 ", musicSource=" + music.getSource() +
                 ", hasRung=" + hasRung + ";";
     }
+
+    public static class MyTimerBuilder {
+        public static MyTimer fromString(String from) {
+            MyTimer myTimer = new MyTimer();
+            Map<String, String> map = new HashMap<>();
+            String[] values = from.split(", ");
+            for (String value : values) {
+                logger.info(value);
+                String[] pair = value.split("=");
+                map.put(pair[0], pair[1]);
+            }
+            myTimer.startNanoTime = Long.parseLong(map.get("startNanoTime"));
+            myTimer.storedElapsedTime = Long.parseLong(map.get("storedElapsedTime"));
+            myTimer.totalTime = Long.parseLong(map.get("totalTime"));;
+            myTimer.state = TimerStates.getFromString(map.get("state"));
+            myTimer.music = new Media(map.get("musicSource"));
+            myTimer.hasRung = Boolean.parseBoolean(map.get("hasRung"));
+            return myTimer;
+        }
+
+    }
+
 }

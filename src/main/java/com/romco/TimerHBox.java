@@ -48,6 +48,11 @@ public class TimerHBox extends HBox {
         this.setAlignment(Pos.BASELINE_CENTER);
     }
 
+    public TimerHBox(TimerTabController controller, MyTimer timer) {
+        this(controller);
+        this.timer = timer;
+    }
+
     MyTimer getTimer() {
         return timer;
     }
