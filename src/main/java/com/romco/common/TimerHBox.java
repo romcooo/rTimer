@@ -1,5 +1,6 @@
-package com.romco;
+package com.romco.common;
 
+import com.romco.controller.TimerTabController;
 import com.romco.utilities.MyFormatter;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -19,7 +20,7 @@ public class TimerHBox extends HBox {
     private MyTimer timer;
     private TimerTabController controller;
 
-    TimerHBox(TimerTabController controller) {
+    public TimerHBox(TimerTabController controller) {
         this.controller = controller;
         this.timer = new MyTimer();
         this.deleteButton = new Button("X");
@@ -53,7 +54,7 @@ public class TimerHBox extends HBox {
         refreshDisplayedTime(false);
     }
 
-    MyTimer getTimer() {
+    public MyTimer getTimer() {
         return timer;
     }
 
@@ -75,7 +76,7 @@ public class TimerHBox extends HBox {
         return false;
     }
 
-    void startStoppedTimer() throws IllegalArgumentException {
+    public void startStoppedTimer() throws IllegalArgumentException {
         if (!timer.getState().isStarted()) { //isStarted -> has been started at least once
             this.startTimer();
         }
@@ -91,7 +92,7 @@ public class TimerHBox extends HBox {
         return true;
     }
 
-    void refreshDisplayedTime(boolean ringIfTime) throws IllegalArgumentException {
+    public void refreshDisplayedTime(boolean ringIfTime) throws IllegalArgumentException {
         if (ringIfTime) {
             newTimerTextField.setText(MyFormatter.longMillisecondsTimeToTimeString(timer.getRemainingTimeAndRingOnPassing()));
         } else {

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Tab fx:id="clockTab" fx:controller="com.romco.ClockTabController" xmlns:fx="http://javafx.com/fxml"
+<Tab fx:id="clockTab" fx:controller="com.romco.controller.ClockTabController" xmlns:fx="http://javafx.com/fxml"
      text="Clock">
     <BorderPane>
         <center>

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<Tab fx:id="stopwatchTab" fx:controller="com.romco.StopwatchTabController" xmlns:fx="http://javafx.com/fxml" text="Stopwatch" onSelectionChanged="#handleSelectionChanged">
+<Tab fx:id="stopwatchTab" fx:controller="com.romco.controller.StopwatchTabController" xmlns:fx="http://javafx.com/fxml" text="Stopwatch" onSelectionChanged="#handleSelectionChanged">
     <BorderPane>
         <center>
             <VBox fx:id="stopwatchCenterVBox1" alignment="CENTER">

@@ -1,5 +1,7 @@
-package com.romco;
+package com.romco.controller;
 
+import com.romco.common.MyTimer;
+import com.romco.common.TimerHBox;
 import com.romco.utilities.MyFormatter;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
@@ -121,7 +123,7 @@ public class TimerTabController {
     }
 
     @FXML
-    void deleteTimerHBox(TimerHBox timerHBoxToDelete) {
+    public void deleteTimerHBox(TimerHBox timerHBoxToDelete) {
         timerHBoxes.remove(timerHBoxToDelete);
         timerCenterVBox1.getChildren().remove(timerHBoxToDelete);
     }

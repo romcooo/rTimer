@@ -1,8 +1,8 @@
 package com.romco.persistence;
 
-import com.romco.MainController;
-import com.romco.MyTimer;
-import com.romco.TimerTabController;
+import com.romco.controller.MainController;
+import com.romco.common.MyTimer;
+import com.romco.controller.TimerTabController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

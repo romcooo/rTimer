@@ -1,6 +1,6 @@
-package com.romco;
+package com.romco.common;
 
-enum TimerStates {
+public enum TimerStates {
     RUNNING {
         public boolean isStarted() { return true; }
         public boolean isRunning() { return true; }
@@ -23,6 +23,6 @@ enum TimerStates {
         return null;
     }
 
-    abstract boolean isStarted();
-    abstract boolean isRunning();
+    public abstract boolean isStarted();
+    public abstract boolean isRunning();
 }

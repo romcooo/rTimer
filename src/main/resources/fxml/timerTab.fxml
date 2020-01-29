@@ -10,7 +10,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.geometry.Insets?>
-<Tab fx:id="timerTab" fx:controller="com.romco.TimerTabController" xmlns:fx="http://javafx.com/fxml"
+<Tab fx:id="timerTab" fx:controller="com.romco.controller.TimerTabController" xmlns:fx="http://javafx.com/fxml"
      text="Timer" onSelectionChanged="#handleSelectionChanged">
     <BorderPane>
         <padding>

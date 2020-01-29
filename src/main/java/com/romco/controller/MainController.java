@@ -1,4 +1,4 @@
-package com.romco;
+package com.romco.controller;
 
 import com.romco.persistence.Persistence;
 import javafx.fxml.FXML;

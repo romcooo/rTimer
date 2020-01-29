@@ -1,5 +1,6 @@
-package com.romco;
+package com.romco.common;
 
+import com.romco.controller.TimerTabController;
 import com.romco.utilities.MyFormatter;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -46,8 +47,8 @@ public class MyTimer implements Startable, Argh {
     public long getTotalTime() {
         return totalTime;
     }
-    
-    TimerStates getState() {
+
+    public TimerStates getState() {
         return state;
     }
 

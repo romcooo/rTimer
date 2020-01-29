@@ -1,6 +1,6 @@
 package com.romco.persistence;
 
-import com.romco.MyTimer;
+import com.romco.common.MyTimer;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

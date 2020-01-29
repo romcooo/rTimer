@@ -1,6 +1,6 @@
-package com.romco;
+package com.romco.common;
 
-interface Startable {
+public interface Startable {
     boolean start();
     boolean stop();
     boolean pause();

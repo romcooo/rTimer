@@ -1,4 +1,4 @@
-package com.romco;
+package com.romco.common;
 
 public interface Argh {
 }

@@ -1,4 +1,4 @@
-package com.romco;
+package com.romco.controller;
 
 import com.romco.utilities.MyFormatter;
 import javafx.animation.AnimationTimer;
