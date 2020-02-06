@@ -119,19 +119,18 @@ public class MyTimer implements Startable, Argh {
         return true;
     }
 
-    public boolean stopAndUpdate(long timeToSet) {
+    public void stopAndUpdate(long timeToSet) {
         if (this.state == TimerStates.STOPPED) {
             logger.info("Already stopped.");
-            return false;
+        } else {
+            logger.info("Stopping.");
         }
-        logger.info("Stopping.");
         this.state = TimerStates.STOPPED;
         this.storedElapsedTime = 0;
         this.startNanoTime = 0;
         this.mediaPlayer.stop();
         this.totalTime = timeToSet;
         this.hasRung = this.totalTime <= 0;
-        return true;
     }
 
     public void setNewTotalTime(long newTotalTime) {

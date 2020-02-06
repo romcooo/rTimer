@@ -18,4 +18,5 @@ module MorTimer {
 
     opens com.romco;
     opens com.romco.utilities;
+    opens com.romco.controller;
 }

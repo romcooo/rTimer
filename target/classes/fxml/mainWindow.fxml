@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainBorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.romco.controller.MainController">
+    <top>
+        <VBox alignment="CENTER_LEFT">
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="New" />
+                        <MenuItem text="Open" onAction="#loadFromFile" />
+                        <MenuItem onAction="#saveCurrentAs" text="Save As" />
+                        <MenuItem text="Settings" />
+                        <SeparatorMenuItem />
+                        <MenuItem text="Exit" />
+                    </items>
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <HBox>
+                    <Button text="New...">
+                        <tooltip>
+                            <Tooltip text="Add a new Todo item" />
+                        </tooltip>
+                    </Button>
+                    <ToggleButton fx:id="filterToggleButton">
+                        <tooltip>
+                            <Tooltip text="Button down: show only items due today. Button down: show all items." />
+                        </tooltip>
+                    </ToggleButton>
+                </HBox>
+            </ToolBar>
+
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+<!--                <Tab text="Timer">-->
+<!--                    <fx:include fx:id="timerTab" source="timerTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="timerTab" source="timerTab.fxml"/>
+<!--                <Tab fx:id="stopwatchTabReference"  text="Stopwatch">-->
+<!--                    <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="stopwatchTab" source="stopwatchTab.fxml"/>
+<!--                <Tab text="Clock">-->
+<!--                    <fx:include fx:id="clockTab" source="clockTab.fxml"/>-->
+<!--                </Tab>-->
+                <fx:include fx:id="clockTab" source="clockTab.fxml"/>
+            </tabs>
+        </TabPane>
+    </center>
+
+</BorderPane>
