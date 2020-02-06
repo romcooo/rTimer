@@ -6,72 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="bleh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/Argh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/common/Argh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/ClockTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/controller/ClockTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/MyStopWatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/common/MyStopWatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/MyTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/common/MyTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/Startable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/common/Startable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/StopwatchTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/controller/StopwatchTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/TimerHBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/common/TimerHBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/TimerStates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/common/TimerStates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/TimerTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/controller/TimerTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/persistence/ComponentParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/persistence/ComponentParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/persistence/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/persistence/FileLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/romco/persistence/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/romco/persistence/Persistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/clockTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/clockTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/stopwatchTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/stopwatchTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/timerTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/timerTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/Argh.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/ClockTabController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/ClockTabController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/ClockTabController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/MainController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/MyStopWatch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/MyTimer$MyTimerFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/MyTimer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/Startable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/StopwatchTabController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/StopwatchTabController$DeleteButtonBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/StopwatchTabController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerHBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerStates$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerStates$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerStates$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerStates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerTabController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/TimerTabController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/ComponentParser$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/ComponentParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/FileLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/FileSaver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/FileType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/Persistence$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/Persistence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/persistence/TypeDeterminateArrayList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/utilities/MyFormatter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/romco/utilities/UserSettings.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/defaultSettings.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/userSettings.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/clockTab.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainWindow.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/stopwatchTab.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/timerTab.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm01.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm02.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm03.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm04.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm05.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm06.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm07.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm08.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm09.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sourcefiles/Alarm10.wav" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -431,21 +365,21 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="262" key="GridCell.Tab.0.bottom" timestamp="1580994020460">
+    <state width="1877" height="262" key="GridCell.Tab.0.bottom" timestamp="1581004116081">
       <screen x="1920" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="262" key="GridCell.Tab.0.bottom/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1580994020460" />
-    <state width="1877" height="262" key="GridCell.Tab.0.center" timestamp="1580994020460">
+    <state width="1877" height="262" key="GridCell.Tab.0.bottom/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
+    <state width="1877" height="262" key="GridCell.Tab.0.center" timestamp="1581004116081">
       <screen x="1920" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="262" key="GridCell.Tab.0.center/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1580994020460" />
-    <state width="1877" height="262" key="GridCell.Tab.0.left" timestamp="1580994020460">
+    <state width="1877" height="262" key="GridCell.Tab.0.center/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
+    <state width="1877" height="262" key="GridCell.Tab.0.left" timestamp="1581004116081">
       <screen x="1920" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="262" key="GridCell.Tab.0.left/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1580994020460" />
-    <state width="1877" height="262" key="GridCell.Tab.0.right" timestamp="1580994020460">
+    <state width="1877" height="262" key="GridCell.Tab.0.left/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
+    <state width="1877" height="262" key="GridCell.Tab.0.right" timestamp="1581004116081">
       <screen x="1920" y="0" width="1920" height="1160" />
     </state>
-    <state width="1877" height="262" key="GridCell.Tab.0.right/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1580994020460" />
+    <state width="1877" height="262" key="GridCell.Tab.0.right/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
   </component>
 </project>
