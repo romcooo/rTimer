@@ -1,4 +1,6 @@
-TIMER
-startNanoTime=166417327486000, storedElapsedTime=324, totalTime=100000, state=PAUSED, musicSource=file:/I:/Git/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
-startNanoTime=166415773611100, storedElapsedTime=1350, totalTime=1000, state=PAUSED, musicSource=file:/I:/Git/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=true
-startNanoTime=0, storedElapsedTime=0, totalTime=1000, state=STOPPED, musicSource=file:/I:/Git/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+FileType=TIMER
+startNanoTime=0, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=0, storedElapsedTime=0, totalTime=300000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=0, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=0, storedElapsedTime=0, totalTime=300000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=0, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false

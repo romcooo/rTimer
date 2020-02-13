@@ -1,0 +1,4 @@
+FileType=TIMER
+startNanoTime=0, storedElapsedTime=0, totalTime=1000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=0, storedElapsedTime=0, totalTime=31000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=0, storedElapsedTime=0, totalTime=1000, state=STOPPED, musicSource=file:/I:/Git/Personal/Mortimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false

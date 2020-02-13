@@ -18,8 +18,8 @@ public class ComponentParser {
                    .append("\n");
         int count = 0;
         for (MyTimer t : timers) {
-            dataToWrite.append(", ")
-                       .append(t)
+
+            dataToWrite.append(t)
                        .append("\n");
             logger.info(dataToWrite.toString());
         }
@@ -28,7 +28,10 @@ public class ComponentParser {
 
     public static FileType determineFileType(String file) {
         String firstLine = file.substring(0, file.indexOf("\n"));
-        return FileType.getByString(firstLine);
+        logger.debug(firstLine);
+        String subString = firstLine.substring(firstLine.indexOf('=')+1);
+        logger.debug(subString);
+        return FileType.getByString(subString);
     }
 
     @NotNull
@@ -36,7 +39,7 @@ public class ComponentParser {
         List<String> lines = new ArrayList<>(Arrays.asList(fileContent.split("\n")));
 
         //remove first line so rest can be passed to a for loop for parsing
-        if (lines.get(0).trim().equalsIgnoreCase(FileType.TIMER.toString())) {
+        if (lines.get(0).trim().contains(FileType.TIMER.toString())) {
             lines.remove(0);
         }
         if (lines.isEmpty()) {
