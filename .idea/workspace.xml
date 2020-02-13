@@ -5,7 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="bleh">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MorTimer/META-INF/MorTimer.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/META-INF/rTimer.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/ClockTabController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/ClockTabController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MainController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MyFormatter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/MyTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/Startable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController$DeleteButtonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/StopwatchTabController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerStates$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerStates$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerStates$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerStates.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerTabController$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerTabController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/TimerTabController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/datastore/userSettings.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/clockTab.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/mainWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/stopwatchTab.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rTimer/sample/fxml/timerTab.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,21 +394,33 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="262" key="GridCell.Tab.0.bottom" timestamp="1581004116081">
-      <screen x="1920" y="0" width="1920" height="1160" />
+    <state width="1877" height="173" key="GridCell.Tab.0.bottom" timestamp="1581588788524">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="229" key="GridCell.Tab.0.bottom/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@0.0.1920.1160" timestamp="1581429510585" />
     <state width="1877" height="262" key="GridCell.Tab.0.bottom/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
-    <state width="1877" height="262" key="GridCell.Tab.0.center" timestamp="1581004116081">
-      <screen x="1920" y="0" width="1920" height="1160" />
+    <state width="1877" height="173" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581588788524" />
+    <state width="1877" height="199" key="GridCell.Tab.0.bottom/0.0.1920.1160/1920.0.1920.1160/-1920.115.1920.1040@0.0.1920.1160" timestamp="1581521015779" />
+    <state width="1877" height="173" key="GridCell.Tab.0.center" timestamp="1581588788524">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="229" key="GridCell.Tab.0.center/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@0.0.1920.1160" timestamp="1581429510585" />
     <state width="1877" height="262" key="GridCell.Tab.0.center/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
-    <state width="1877" height="262" key="GridCell.Tab.0.left" timestamp="1581004116081">
-      <screen x="1920" y="0" width="1920" height="1160" />
+    <state width="1877" height="173" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581588788524" />
+    <state width="1877" height="199" key="GridCell.Tab.0.center/0.0.1920.1160/1920.0.1920.1160/-1920.115.1920.1040@0.0.1920.1160" timestamp="1581521015778" />
+    <state width="1877" height="173" key="GridCell.Tab.0.left" timestamp="1581588788524">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="229" key="GridCell.Tab.0.left/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@0.0.1920.1160" timestamp="1581429510585" />
     <state width="1877" height="262" key="GridCell.Tab.0.left/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
-    <state width="1877" height="262" key="GridCell.Tab.0.right" timestamp="1581004116081">
-      <screen x="1920" y="0" width="1920" height="1160" />
+    <state width="1877" height="173" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581588788524" />
+    <state width="1877" height="199" key="GridCell.Tab.0.left/0.0.1920.1160/1920.0.1920.1160/-1920.115.1920.1040@0.0.1920.1160" timestamp="1581521015778" />
+    <state width="1877" height="173" key="GridCell.Tab.0.right" timestamp="1581588788524">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="229" key="GridCell.Tab.0.right/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@0.0.1920.1160" timestamp="1581429510585" />
     <state width="1877" height="262" key="GridCell.Tab.0.right/-1920.115.1920.1040/0.0.1920.1160/1920.0.1920.1160@1920.0.1920.1160" timestamp="1581004116081" />
+    <state width="1877" height="173" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581588788524" />
+    <state width="1877" height="199" key="GridCell.Tab.0.right/0.0.1920.1160/1920.0.1920.1160/-1920.115.1920.1040@0.0.1920.1160" timestamp="1581521015779" />
   </component>
 </project>
