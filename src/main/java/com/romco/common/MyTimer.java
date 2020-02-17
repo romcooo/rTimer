@@ -3,11 +3,13 @@ package com.romco.common;
 import com.romco.controller.TimerTabController;
 import com.romco.utilities.MyFormatter;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -189,9 +191,17 @@ public class MyTimer implements Startable, Argh {
             }
             myTimer.startNanoTime = Long.parseLong(map.get("startNanoTime"));
             myTimer.storedElapsedTime = Long.parseLong(map.get("storedElapsedTime"));
-            myTimer.totalTime = Long.parseLong(map.get("totalTime"));;
+            myTimer.totalTime = Long.parseLong(map.get("totalTime"));
             myTimer.state = TimerStates.getFromString(map.get("state"));
-            myTimer.music = new Media(map.get("musicSource"));
+            try {
+                if (!new File(map.get("musicSource")).exists()) {
+                    throw new FileNotFoundException();
+                }
+                myTimer.music = new Media(map.get("musicSource"));
+            } catch (MediaException | FileNotFoundException e) {
+                logger.error("Cannot find music source at {}, using default.", map.get("musicSource"));
+                myTimer.music = new Media(new File(TimerTabController.DEFAULT_ALARM_SOUND_FILE_PATH).toURI().toString());
+            }
             myTimer.hasRung = Boolean.parseBoolean(map.get("hasRung"));
             logger.info("Built: " + myTimer.toString());
             return myTimer;

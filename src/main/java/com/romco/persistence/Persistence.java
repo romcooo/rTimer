@@ -24,6 +24,7 @@ public class Persistence {
         try {
             String fileContent = FileLoader.loadStringFromFile(fileToLoad);
             FileType type = ComponentParser.determineFileType(fileContent);
+            logger.debug("loadFile - Parsed type is {}", type);
             switch (type) {
                 case TIMER:
                     ArrayList<MyTimer> list = ComponentParser.parseTimersFromFile(fileContent);

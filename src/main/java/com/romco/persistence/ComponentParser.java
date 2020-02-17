@@ -18,7 +18,6 @@ public class ComponentParser {
                    .append("\n");
         int count = 0;
         for (MyTimer t : timers) {
-
             dataToWrite.append(t)
                        .append("\n");
             logger.info(dataToWrite.toString());
@@ -28,9 +27,9 @@ public class ComponentParser {
 
     public static FileType determineFileType(String file) {
         String firstLine = file.substring(0, file.indexOf("\n"));
-        logger.debug(firstLine);
-        String subString = firstLine.substring(firstLine.indexOf('=')+1);
-        logger.debug(subString);
+        logger.debug("First line: {}", firstLine);
+        String subString = firstLine.substring(firstLine.indexOf('=')+1).trim();
+        logger.debug("Substring: {}", subString);
         return FileType.getByString(subString);
     }
 
