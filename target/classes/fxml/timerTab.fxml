@@ -25,6 +25,7 @@
                     <CheckBox fx:id="timeBetweenTimersCheckBox" text="Delay between timers (sequence)"/>
                     <TextField fx:id="timeBetweenTimersTextField"/>
                 </HBox>
+                <Button fx:id="resetAllTimers" text="Stop and reset all" onAction="#stopAndResetAll"/>
             </VBox>
         </left>
         <center>
