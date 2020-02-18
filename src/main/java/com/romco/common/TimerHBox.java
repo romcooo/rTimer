@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import java.util.InputMismatchException;
 
 public class TimerHBox extends HBox {
+    public static final String BUTTON_TEXT_START = "Start";
+    
     private Button deleteButton;
     private Button resetButton;
     private TextField newTimerTextField;
@@ -26,7 +28,7 @@ public class TimerHBox extends HBox {
         this.deleteButton = new Button("X");
         this.resetButton = new Button("Reset");
         this.newTimerTextField = new TextField();
-        this.startStopButton = new Button("Start");
+        this.startStopButton = new Button(BUTTON_TEXT_START);
 
         this.deleteButton.setCancelButton(true);
         deleteButton.setOnAction(this::deleteThis);
@@ -58,6 +60,15 @@ public class TimerHBox extends HBox {
         return timer;
     }
 
+    public void stopAndResetTimer() {
+        if (timer.getState().isRunning()) {
+            timer.stop();
+        }
+        timer.reset();
+        startStopButton.setText(BUTTON_TEXT_START);
+        refreshDisplayedTime(false);
+    }
+    
     private void toggleTimer(ActionEvent e) throws IllegalCallerException {
         if (!timer.getState().isRunning()) {
             startTimer();
@@ -84,7 +95,7 @@ public class TimerHBox extends HBox {
 
     private boolean pauseTimer() {
         timer.pause();
-        startStopButton.setText("Start");
+        startStopButton.setText(BUTTON_TEXT_START);
 //        newTimerTextField.setEditable(true);
         refreshDisplayedTime(false); //because the gui sync currently only happens when a timer is running,
         // this ensures it will be in sync after pause
@@ -102,7 +113,7 @@ public class TimerHBox extends HBox {
 
     private void resetTimer(ActionEvent e) {
         timer.reset();
-        startStopButton.setText("Start");
+        startStopButton.setText(BUTTON_TEXT_START);
         refreshDisplayedTime(false);
     }
 

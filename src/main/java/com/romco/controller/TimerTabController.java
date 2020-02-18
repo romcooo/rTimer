@@ -127,6 +127,13 @@ public class TimerTabController {
         timerHBoxes.remove(timerHBoxToDelete);
         timerCenterVBox1.getChildren().remove(timerHBoxToDelete);
     }
+    
+    @FXML
+    public void stopAndResetAll() {
+        for (TimerHBox timerHBox : timerHBoxes) {
+            timerHBox.stopAndResetTimer();
+        }
+    }
 
     public void deleteAllTimerHBoxes() {
         for (TimerHBox timerHBox : timerHBoxes) {

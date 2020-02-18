@@ -1,6 +1,7 @@
 FileType=TIMER
-startNanoTime=0, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=628801460107100, storedElapsedTime=0, totalTime=1500000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=625949491616300, storedElapsedTime=0, totalTime=300000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=626249505974000, storedElapsedTime=0, totalTime=1500000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
 startNanoTime=0, storedElapsedTime=0, totalTime=300000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
-startNanoTime=0, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
-startNanoTime=0, storedElapsedTime=0, totalTime=300000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
-startNanoTime=0, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=622555881960900, storedElapsedTime=0, totalTime=1200000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
+startNanoTime=627624843468300, storedElapsedTime=0, totalTime=600000, state=STOPPED, musicSource=file:/C:/git/Personal/MorTimer/src/main/resources/sourcefiles/Alarm01.wav, hasRung=false
