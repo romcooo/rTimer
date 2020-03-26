@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyTimer implements Startable, Argh {
+public class MyTimer implements Startable {
     private static final long DEFAULT_TIMER_MILLIS_VALUE = 1000;
     private static final Logger logger = LoggerFactory.getLogger(MyTimer.class);
 

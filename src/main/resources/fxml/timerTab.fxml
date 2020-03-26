@@ -9,13 +9,15 @@
      text="Timer" onSelectionChanged="#handleSelectionChanged">
     <BorderPane>
         <padding>
-            <Insets left="5.0" top="5.0" right="5.0" bottom="5.0"/>
+            <Insets left="10.0" top="25.0" right="10.0" bottom="25.0"/>
         </padding>
         <left>
-            <VBox spacing="5.0" alignment="BASELINE_LEFT">
-                <CheckBox fx:id="repeatCheckBox" text="Repeat"/>
-                <ToggleButton fx:id="toggleTimerFormat" text="Use dropdowns for timers instead of free text"/>
-                <ToggleButton fx:id="sequenceToggleButton" text="Start next in sequence automatically"/>
+            <VBox alignment="BASELINE_LEFT">
+<!--                <ToggleButton fx:id="toggleTimerFormat" text="Use dropdowns for timers instead of free text"/>-->
+                <HBox spacing="5.0">
+                    <ToggleButton fx:id="sequenceToggleButton" text="Start next in sequence automatically"/>
+                    <CheckBox fx:id="repeatCheckBox" text="Reset and repeat on end"/>
+                </HBox>
                 <HBox spacing="5.0" alignment="CENTER">
                     <CheckBox fx:id="timeBetweenTimersCheckBox" text="Delay between timers (sequence)"/>
                     <TextField fx:id="timeBetweenTimersTextField"/>

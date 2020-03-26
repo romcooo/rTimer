@@ -29,6 +29,8 @@ public class TimerTabController {
     @FXML
     private Button addTimerButtonTopDefault;
     @FXML
+    private CheckBox repeatCheckBox;
+    @FXML
     private ToggleButton sequenceToggleButton;
     @FXML
     private CheckBox timeBetweenTimersCheckBox;
@@ -60,6 +62,12 @@ public class TimerTabController {
                             int index = timerHBoxes.indexOf(timerHBox);
                             if (timerHBoxes.size() > index + 1) {
                                 timerHBoxes.get(index + 1).startStoppedTimer();
+                            } else {
+                                // we are at the end, so check for repeat
+                                if (repeatCheckBox.isSelected()) {
+                                    stopAndResetAll();
+                                    timerHBoxes.get(0).startStoppedTimer();
+                                }
                             }
                         }
                     }
